@@ -50,6 +50,7 @@ public class CustomerDao {
                 customer.setName(name);
                 customer.setEmail(email);
                 customer.setPassword(password);
+                customer.setAddress(address);
                 customers.add(customer);
             }
 

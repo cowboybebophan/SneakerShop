@@ -71,11 +71,16 @@ public class OrderDao {
         return orders;
     }
 
-    public int insertOrder(String p){
+    public int insertOrder(Order order){
         logger.info("Enter the method insertOrder...");
         Connection conn = null;
         Statement stmt = null;
         int rowsInserted = 0;
+
+        /*String d = order.getDate();
+        int c_id = order.getCustomer_id();
+        int p_id = order.getProduct_id();
+        String p = order.getPayment();*/
 
         try {
             //Step 2 : open a connection
@@ -86,11 +91,13 @@ public class OrderDao {
             logger.info("Creating statement...");
             stmt = conn.createStatement();
             String insert_sql = "INSERT INTO sneaker_order (date, customer_id, product_id, payment) " +
-                    "values ('11/19/2019', 2, 4, '" + p + "');";
+                    "values ('" + order.getDate() + "', '" + order.getCustomer_id() + "','" + order.getProduct_id() + "', '" + order.getPayment() + "');";
             rowsInserted = stmt.executeUpdate(insert_sql);
 
-            if ( rowsInserted > 0){
+            if ( rowsInserted == 1){
                 System.out.println("A new order has been inserted successfully!");
+            } else{
+                System.out.println("Insertion not completed.");
             }
 
         } catch (SQLException e) {
@@ -109,7 +116,7 @@ public class OrderDao {
         return rowsInserted;
     }
 
-    public int deleteOrder(String p){
+    public int deleteOrder(String condition){
         logger.info("Enter the method deleteOrder...");
         Connection conn = null;
         Statement stmt = null;
@@ -123,11 +130,13 @@ public class OrderDao {
             //Step 3: Execute a query
             logger.info("Creating statement...");
             stmt = conn.createStatement();
-            String delete_sql = "DELETE FROM sneaker_order WHERE payment = '" + p + "'; ";
+            String delete_sql = "DELETE FROM sneaker_order WHERE " + condition + ";";
             rowsDeleted = stmt.executeUpdate(delete_sql);
 
-            if ( rowsDeleted > 0){
+            if ( rowsDeleted == 1){
                 System.out.println("An order has been deleted successfully!");
+            } else{
+                System.out.println("Deletion not completed.");
             }
 
         } catch (SQLException e) {
@@ -146,7 +155,7 @@ public class OrderDao {
         return rowsDeleted;
     }
 
-    public int updateOrder(){
+    public int updateOrder(String statement, String condition){
         logger.info("Enter the method updateOrder...");
         Connection conn = null;
         Statement stmt = null;
@@ -160,11 +169,13 @@ public class OrderDao {
             //Step 3: Execute a query
             logger.info("Creating statement...");
             stmt = conn.createStatement();
-            String update_sql = "UPDATE sneaker_order SET payment = 'Venmo' WHERE id = 9; ";
+            String update_sql = "UPDATE sneaker_order SET " + statement + " WHERE " + condition;
             rowsUpdated = stmt.executeUpdate(update_sql);
 
-            if ( rowsUpdated > 0){
+            if ( rowsUpdated == 1){
                 System.out.println("An existing order has been updated successfully!");
+            } else{
+                System.out.println("Update not completed.");
             }
 
         } catch (SQLException e) {
