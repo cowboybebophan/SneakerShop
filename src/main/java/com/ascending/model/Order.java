@@ -1,11 +1,13 @@
 package com.ascending.model;
 
+import java.time.LocalDate;
+
 public class Order {
     private int id;
-    private String date;
     private int customer_id;
     private int product_id;
     private String payment;
+    private LocalDate order_date;
 
     public int getId() {
         return id;
@@ -15,12 +17,12 @@ public class Order {
         this.id = id;
     }
 
-    public String getDate() {
-        return date;
+    public LocalDate getOrder_date() {
+        return this.order_date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setOrder_date(LocalDate date) {
+        this.order_date = date;
     }
 
     public int getCustomer_id() {
@@ -51,10 +53,10 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", date='" + date + '\'' +
                 ", customer_id=" + customer_id +
                 ", product_id=" + product_id +
                 ", payment='" + payment + '\'' +
+                ", order_date='" + order_date + '\'' +
                 '}';
     }
 }

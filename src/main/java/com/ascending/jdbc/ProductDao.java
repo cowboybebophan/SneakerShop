@@ -69,4 +69,124 @@ public class ProductDao {
         logger.info("Exiting the method getProducts...");
         return products;
     }
+
+    public int insertProduct(Product product){
+        logger.info("Enter the method insertProduct...");
+        Connection conn = null;
+        Statement stmt = null;
+        int rowsInserted = 0;
+
+        try {
+            //Step 2 : open a connection
+            logger.info("Connecting to database...");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            //Step 3: Execute a query
+            logger.info("Creating statement...");
+            stmt = conn.createStatement();
+            String insert_sql = "INSERT INTO product (name, description, price, stock) " +
+                    "values ('" + product.getName() + "', '" + product.getDescription() + "','"
+                    + product.getPrice() + "', '" + product.getStock() + "');";
+            rowsInserted = stmt.executeUpdate(insert_sql);
+
+            if ( rowsInserted == 1){
+                System.out.println("A new product has been inserted successfully!");
+            } else{
+                System.out.println("Insertion not completed.");
+            }
+
+        } catch (SQLException e) {
+            logger.info(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            // finally block is used to close resources
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        logger.info("Exit the method insertProduct...");
+        return rowsInserted;
+
+    }
+
+    public int deleteProduct(String condition){
+        logger.info("Enter the method deleteProduct...");
+        Connection conn = null;
+        Statement stmt = null;
+        int rowsDeleted = 0;
+
+        try {
+            //Step 2 : open a connection
+            logger.info("Connecting to database...");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            //Step 3: Execute a query
+            logger.info("Creating statement...");
+            stmt = conn.createStatement();
+            String delete_sql = "DELETE FROM product WHERE " + condition + ";";
+            rowsDeleted = stmt.executeUpdate(delete_sql);
+
+            if ( rowsDeleted == 1){
+                System.out.println("A product has been deleted successfully!");
+            } else{
+                System.out.println("Deletion not completed.");
+            }
+
+        } catch (SQLException e) {
+            logger.info(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            // finally block is used to close resources
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        logger.info("Exit the method deleteProduct...");
+        return rowsDeleted;
+    }
+
+    public int updateProduct(String statement, String condition){
+        logger.info("Enter the method updateProduct...");
+        Connection conn = null;
+        Statement stmt = null;
+        int rowsUpdated = 0;
+
+        try {
+            //Step 2 : open a connection
+            logger.info("Connecting to database...");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            //Step 3: Execute a query
+            logger.info("Creating statement...");
+            stmt = conn.createStatement();
+            String update_sql = "UPDATE product SET " + statement + " WHERE " + condition;
+            rowsUpdated = stmt.executeUpdate(update_sql);
+
+            if ( rowsUpdated == 1){
+                System.out.println("An existing product has been updated successfully!");
+            } else{
+                System.out.println("Update not completed.");
+            }
+
+        } catch (SQLException e) {
+            logger.info(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            // finally block is used to close resources
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        logger.info("Exit the method updateProduct...");
+        return rowsUpdated;
+    }
 }

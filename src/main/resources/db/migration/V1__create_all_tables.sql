@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS sneaker_order CASCADE;
 DROP TABLE IF EXISTS product CASCADE;
 
 CREATE TABLE customer (
-    /*id             INTEGER NOT NULL default nextval('department_id_seq'), */
+    /*id             INTEGER NOT NULL default next val */
    id                SERIAL NOT NULL,
    name              VARCHAR(30) not null unique,
    email             VARCHAR(50),
@@ -13,7 +13,7 @@ CREATE TABLE customer (
 ALTER TABLE customer ADD CONSTRAINT customer_pk PRIMARY KEY ( id );
 
 CREATE TABLE sneaker_order (
-    /*id             INTEGER NOT NULL default nextval('department_id_seq'), */
+    /*id             INTEGER NOT NULL default next val */
     id               SERIAL NOT NULL,
     date             VARCHAR(30),
     customer_id      INTEGER,
@@ -23,7 +23,7 @@ CREATE TABLE sneaker_order (
 ALTER TABLE sneaker_order ADD CONSTRAINT sneaker_order_pk PRIMARY KEY ( id );
 
 CREATE TABLE product (
-    /*id             INTEGER NOT NULL default nextval('department_id_seq'), */
+    /*id             INTEGER NOT NULL default next val */
     id               SERIAL NOT NULL,
     name             VARCHAR(50) not null unique,
     description      VARCHAR(100),

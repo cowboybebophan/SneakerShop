@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,18 +40,18 @@ public class OrderDao {
             while (rs.next()){
                 //Retrieve by column name
                 int id = rs.getInt("id");
-                String date = rs.getString("date");
                 int customer_id = rs.getInt("customer_id");
                 int product_id = rs.getInt("product_id");
                 String payment = rs.getString("payment");
+                LocalDate order_date = rs.getObject("order_date", LocalDate.class);
 
                 //Fill the object
                 Order order = new Order();
                 order.setId(id);
-                order.setDate(date);
                 order.setCustomer_id(customer_id);
                 order.setProduct_id(product_id);
                 order.setPayment(payment);
+                order.setOrder_date(order_date);
                 orders.add(order);
             }
 
@@ -77,11 +78,6 @@ public class OrderDao {
         Statement stmt = null;
         int rowsInserted = 0;
 
-        /*String d = order.getDate();
-        int c_id = order.getCustomer_id();
-        int p_id = order.getProduct_id();
-        String p = order.getPayment();*/
-
         try {
             //Step 2 : open a connection
             logger.info("Connecting to database...");
@@ -90,8 +86,8 @@ public class OrderDao {
             //Step 3: Execute a query
             logger.info("Creating statement...");
             stmt = conn.createStatement();
-            String insert_sql = "INSERT INTO sneaker_order (date, customer_id, product_id, payment) " +
-                    "values ('" + order.getDate() + "', '" + order.getCustomer_id() + "','" + order.getProduct_id() + "', '" + order.getPayment() + "');";
+            String insert_sql = "INSERT INTO sneaker_order (customer_id, product_id, payment) " +
+                    "values ('" + order.getCustomer_id() + "', '" + order.getProduct_id() + "','" + order.getPayment() + "');";
             rowsInserted = stmt.executeUpdate(insert_sql);
 
             if ( rowsInserted == 1){

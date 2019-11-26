@@ -4,6 +4,7 @@ import com.ascending.jdbc.OrderDao;
 import com.ascending.model.Order;
 import org.junit.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,10 +32,10 @@ public class OrderDaoTest {
     public void insertOrderTest(){
         order = new Order();
 
-        order.setDate("11/20/2019");
         order.setCustomer_id(3);
         order.setProduct_id(4);
         order.setPayment("BoA");
+        order.setOrder_date(LocalDate.now());
 
         int rowsInserted = orderDao.insertOrder(order);
         int insertedNumOfRows = 1;
@@ -48,7 +49,7 @@ public class OrderDaoTest {
 
     @Test
     public void deleteOrderTest(){
-        String condition = "date = '11/19/2019' AND payment = 'Venmo'";
+        String condition = "customer_id = 2 AND product_id = 4 AND payment = 'Venmo'";
         int rowsDeleted = orderDao.deleteOrder(condition);
         int deletedNumOfRows = 1;
 
@@ -56,7 +57,7 @@ public class OrderDaoTest {
 
         // Add the record back;
         order = new Order();
-        order.setDate("11/19/2019");
+        order.setOrder_date(LocalDate.now());
         order.setCustomer_id(2);
         order.setProduct_id(4);
         order.setPayment("Venmo");
@@ -68,7 +69,7 @@ public class OrderDaoTest {
     @Test
     public void updateOrderTest(){
         String statement = "payment = 'BoA'";
-        String condition = "date = '11/19/2019' AND payment = 'Venmo'";
+        String condition = "customer_id = 2 AND product_id = 4 AND payment = 'Venmo'";
         int rowsUpdated = orderDao.updateOrder(statement, condition);
         int updatedNumOfRows = 1;
 
@@ -76,7 +77,7 @@ public class OrderDaoTest {
 
         // Update back
         statement = "payment = 'Venmo'";
-        condition = "date = '11/19/2019' AND payment = 'BoA'";
+        condition = "customer_id = 2 AND product_id = 4 AND payment = 'BoA'";
 
         orderDao.updateOrder(statement, condition);
 
