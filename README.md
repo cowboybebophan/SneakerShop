@@ -1,6 +1,6 @@
 # Sneaker Shop
 
-## database setup
+## Database setup
 
 Use `Docker` to setup local environment
 
