@@ -1,7 +1,7 @@
 # Sneaker Shop
 Imagine walking into a sneaker shop and seeing hundreds of sneakers displaying in front of you like this:
 
-<img src="https://cdn.vox-cdn.com/thumbor/dF0zZT8QnwLnGj4APGe1wTDU2hI=/0x0:6720x4480/1820x1213/filters:focal(2823x1703:3897x2777):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/58617409/PHOTO_CREDIT__Giulia_White__2F_GOAT.0.jpg
+<img src="https://cdn.vox-cdn.com/thumbor/SKljOF0-2E0JV79_r_3k8qs62zM=/0x0:6720x4480/1200x800/filters:focal(2823x1703:3897x2777)/cdn.vox-cdn.com/uploads/chorus_image/image/58617409/PHOTO_CREDIT__Giulia_White__2F_GOAT.0.jpg
 " width="200" height="200" />
 
 How do you choose the perfect pair? Size, style, brand, color, material, technology...   
