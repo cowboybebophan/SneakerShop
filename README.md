@@ -3,8 +3,9 @@ Imagine walking into a sneaker shop and seeing hundreds of sneakers displaying i
 
 How do you choose the perfect pair? There are so many factors you need to consider: size, style, brand, color, material...
 
-SneakerShop is a system that takes in all the factors into account and chooses the perfect sneaker for you.
+**SneakerShop** is a system that takes in all the factors into account and chooses the perfect sneaker for you.
 
+![Flight Club NYC store.](https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2016%2F10%2Fflight-club-nyc-store-expansion-1.jpg?q=90&w=1400&cbr=1&fit=max)
 ![Flight Club NYC store.](https://cdn.vox-cdn.com/thumbor/dF0zZT8QnwLnGj4APGe1wTDU2hI=/0x0:6720x4480/1820x1213/filters:focal(2823x1703:3897x2777):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/58617409/PHOTO_CREDIT__Giulia_White__2F_GOAT.0.jpg)
 
 ## Getting Started
