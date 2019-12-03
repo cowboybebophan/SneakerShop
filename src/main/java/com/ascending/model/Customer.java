@@ -1,10 +1,26 @@
 package com.ascending.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "customer")
 public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "address")
     private String address;
 
     public int getId() {

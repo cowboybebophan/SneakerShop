@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class ProductDaoTest {
 
         product.setName("Converse 1970s");
         product.setDescription("The best causal sneaker in the world!");
-        product.setPrice(70);
+        product.setPrice(BigDecimal.valueOf(70));
         product.setStock(80);
 
         int rowsInserted = productDao.insertProduct(product);
@@ -54,7 +55,7 @@ public class ProductDaoTest {
 
         product.setName("Converse 1970s");
         product.setDescription("The best causal sneaker in the world!");
-        product.setPrice(70);
+        product.setPrice(BigDecimal.valueOf(70));
         product.setStock(80);
 
         productDao.insertProduct(product);

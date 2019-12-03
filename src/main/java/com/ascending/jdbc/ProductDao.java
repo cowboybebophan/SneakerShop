@@ -5,6 +5,7 @@ import com.ascending.model.Product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class ProductDao {
                 product.setId(id);
                 product.setName(name);
                 product.setDescription(description);
-                product.setPrice(price);
+                product.setPrice(BigDecimal.valueOf(price));
                 product.setStock(stock);
                 products.add(product);
             }
@@ -189,4 +190,5 @@ public class ProductDao {
         logger.info("Exit the method updateProduct...");
         return rowsUpdated;
     }
+
 }

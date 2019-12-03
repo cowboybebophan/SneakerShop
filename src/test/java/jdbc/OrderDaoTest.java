@@ -19,7 +19,7 @@ public class OrderDaoTest {
     @Test
     public void getOrdersTest(){
         List<Order> orders = orderDao.getOrders();
-        int expectationNumOfOrders = 9;
+        int expectationNumOfOrders = 8;
 
         for (Order order : orders){
             System.out.println(order);
@@ -49,7 +49,7 @@ public class OrderDaoTest {
 
     @Test
     public void deleteOrderTest(){
-        String condition = "customer_id = 2 AND product_id = 4 AND payment = 'Venmo'";
+        String condition = "customer_id = 4 AND product_id = 4 AND payment = 'PayPal'";
         int rowsDeleted = orderDao.deleteOrder(condition);
         int deletedNumOfRows = 1;
 
@@ -58,9 +58,9 @@ public class OrderDaoTest {
         // Add the record back;
         order = new Order();
         order.setOrder_date(LocalDate.now());
-        order.setCustomer_id(2);
+        order.setCustomer_id(4);
         order.setProduct_id(4);
-        order.setPayment("Venmo");
+        order.setPayment("PayPal");
 
         orderDao.insertOrder(order);
 
@@ -69,15 +69,15 @@ public class OrderDaoTest {
     @Test
     public void updateOrderTest(){
         String statement = "payment = 'BoA'";
-        String condition = "customer_id = 2 AND product_id = 4 AND payment = 'Venmo'";
+        String condition = "customer_id = 4 AND product_id = 4 AND payment = 'PayPal'";
         int rowsUpdated = orderDao.updateOrder(statement, condition);
         int updatedNumOfRows = 1;
 
         Assert.assertEquals(updatedNumOfRows, rowsUpdated);
 
         // Update back
-        statement = "payment = 'Venmo'";
-        condition = "customer_id = 2 AND product_id = 4 AND payment = 'BoA'";
+        statement = "payment = 'PayPal'";
+        condition = "customer_id = 4 AND product_id = 4 AND payment = 'BoA'";
 
         orderDao.updateOrder(statement, condition);
 

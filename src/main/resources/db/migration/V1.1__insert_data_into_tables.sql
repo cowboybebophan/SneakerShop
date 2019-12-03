@@ -14,15 +14,15 @@ insert into customer (name, email, password, address) values
 ;
 commit;
 
-insert into sneaker_order (date, customer_id, product_id, payment) values
-('10/5/2019', 3, 4, 'Venmo'),
-('10/22/2019', 1, 3, 'Credit Card'),
-('10/23/2019', 1, 4, 'PayPal'),
-('10/15/2019', 2, 1, 'Debit Card'),
-('11/8/2019', 4, 2, 'PayPal'),
-('11/10/2019', 2, 3, 'Venmo'),
-('11/12/2019', 3, 2, 'Credit Card'),
-('11/18/2019', 4, 4, 'PayPal')
+insert into sneaker_order (customer_id, product_id, payment) values
+(3, 4, 'Venmo'),
+(1, 3, 'Credit Card'),
+(1, 4, 'PayPal'),
+(2, 1, 'Debit Card'),
+(4, 2, 'PayPal'),
+(2, 3, 'Venmo'),
+(3, 2, 'Credit Card'),
+(4, 4, 'PayPal')
 ;
 commit;
 

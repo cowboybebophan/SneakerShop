@@ -15,7 +15,7 @@ ALTER TABLE customer ADD CONSTRAINT customer_pk PRIMARY KEY ( id );
 CREATE TABLE sneaker_order (
     /*id             INTEGER NOT NULL default next val */
     id               SERIAL NOT NULL,
-    date             VARCHAR(30),
+    order_date       date default current_date,
     customer_id      INTEGER,
     product_id       INTEGER,
     payment          VARCHAR(30)

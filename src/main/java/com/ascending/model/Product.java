@@ -1,10 +1,27 @@
 package com.ascending.model;
 
+import javax.persistence.*;
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "product")
 public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "description")
     private String description;
-    private double price;
+
+    @Column(name = "price")
+    private BigDecimal price;
+
+    @Column(name = "stock")
     private int stock;
 
     public int getId() {
@@ -31,11 +48,11 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

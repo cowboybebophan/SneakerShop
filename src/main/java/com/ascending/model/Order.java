@@ -1,12 +1,27 @@
 package com.ascending.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "sneaker_order")
 public class Order {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "customer_id")
     private int customer_id;
+
+    @Column(name = "product_id")
     private int product_id;
+
+    @Column(name = "payment")
     private String payment;
+
+    @Column(name = "order_date")
     private LocalDate order_date;
 
     public int getId() {
