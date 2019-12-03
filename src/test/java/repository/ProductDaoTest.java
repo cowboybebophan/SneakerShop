@@ -57,8 +57,7 @@ public class ProductDaoTest {
         Assert.assertEquals(isSuccess, true);
 
         //Reset the table by deleting the inserted record;
-        String condition = "Converse 1970s";
-        productDao.delete(condition);
+        productDao.delete(product.getName());
     }
 
     @Test
@@ -98,7 +97,6 @@ public class ProductDaoTest {
         //Set the price back to what it was
         product.setPrice(BigDecimal.valueOf(300));
         productDao.update(product);
-
     }
     
 }

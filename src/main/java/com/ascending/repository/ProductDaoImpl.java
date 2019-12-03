@@ -24,6 +24,19 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
+    public Product getProductByName(String productName){
+        if (productName == null) return null;
+        String hql = "FROM Product as prod where lower(prod.name) = :name";
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Product> query = session.createQuery(hql);
+            query.setParameter("name", productName.toLowerCase());
+
+            return query.uniqueResult();
+        }
+    }
+
+    @Override
     public boolean save(Product product){
         Transaction transaction = null;
         boolean isSuccess = true;
@@ -33,8 +46,6 @@ public class ProductDaoImpl implements ProductDao {
             transaction = session.beginTransaction();
             session.save(product);
             transaction.commit();
-
-
         }
         catch (Exception e) {
             isSuccess = false;
@@ -92,18 +103,5 @@ public class ProductDaoImpl implements ProductDao {
 
         return isSuccess;
 
-    }
-
-    @Override
-    public Product getProductByName(String productName){
-        if (productName == null) return null;
-        String hql = "FROM Product as prod where lower(prod.name) = :name";
-
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query<Product> query = session.createQuery(hql);
-            query.setParameter("name", productName.toLowerCase());
-
-            return query.uniqueResult();
-        }
     }
 }
