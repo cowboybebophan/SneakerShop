@@ -35,6 +35,15 @@ public class ProductDaoTest {
     }
 
     @Test
+    public void getProductByName(){
+        String productName = "New Balance 990v2";
+        product = productDao.getProductByName(productName);
+        logger.debug(product.toString());
+
+        Assert.assertEquals(productName, product.getName());
+    }
+
+    @Test
     public void saveProduct(){
         product = new Product();
 
@@ -91,5 +100,5 @@ public class ProductDaoTest {
         productDao.update(product);
 
     }
-
+    
 }
