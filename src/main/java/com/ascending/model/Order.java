@@ -6,23 +6,32 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "sneaker_order")
 public class Order {
+    public Order() {}
+
+    public Order(Customer customer, Product product, String payment) {
+        this.customer = customer;
+        this.product = product;
+        this.payment = payment;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @Column(name = "customer_id")
-    private int customer_id;
-
-    @Column(name = "product_id")
-    private int product_id;
-
     @Column(name = "payment")
     private String payment;
 
     @Column(name = "order_date")
     private LocalDate order_date;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     public int getId() {
         return id;
@@ -40,20 +49,20 @@ public class Order {
         this.order_date = date;
     }
 
-    public int getCustomer_id() {
-        return customer_id;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public String getPayment() {
@@ -68,8 +77,8 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", customer_id=" + customer_id +
-                ", product_id=" + product_id +
+                ", customer_id=" + customer.getId() +
+                ", product_id=" + product.getId() +
                 ", payment='" + payment + '\'' +
                 ", order_date='" + order_date + '\'' +
                 '}';

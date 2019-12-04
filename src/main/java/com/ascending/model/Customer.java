@@ -1,10 +1,26 @@
 package com.ascending.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "customer")
 public class Customer {
+
+    public Customer() {
+
+    }
+
+    public Customer(int id) {
+        this.id = id;
+    }
+
+    public Customer(String name, String email, String password, String address) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +38,9 @@ public class Customer {
 
     @Column(name = "address")
     private String address;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private Set<Order> orders;
 
     public int getId() {
         return id;

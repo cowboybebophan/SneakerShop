@@ -1,6 +1,8 @@
 package repository;
 
+import com.ascending.model.Customer;
 import com.ascending.model.Order;
+import com.ascending.model.Product;
 import com.ascending.repository.OrderDao;
 import com.ascending.repository.OrderDaoImpl;
 import org.junit.Assert;
@@ -14,6 +16,8 @@ import java.util.List;
 public class OrderDaoTest {
     private static OrderDao orderDao;
     private Order order;
+    private Customer customer;
+    private Product product;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @BeforeClass
@@ -42,11 +46,9 @@ public class OrderDaoTest {
 
     @Test
     public void saveOrder() {
-        order = new Order();
-
-        order.setCustomer_id(3);
-        order.setProduct_id(3);
-        order.setPayment("Stripe");
+        customer = new Customer(3);
+        product = new Product(3);
+        order = new Order(customer, product, "Stripe");
 
         boolean isSuccess = orderDao.save(order);
 
@@ -57,13 +59,12 @@ public class OrderDaoTest {
 
     @Test
     public void deleteOrder() {
-        order = new Order();
-
-        order.setCustomer_id(3);
-        order.setProduct_id(3);
-        order.setPayment("Stripe");
+        customer = new Customer(3);
+        product = new Product(3);
+        order = new Order(customer, product, "Stripe");
 
         orderDao.save(order);
+
         boolean isSuccess = orderDao.delete(order.getId());
 
         Assert.assertEquals(isSuccess, true);

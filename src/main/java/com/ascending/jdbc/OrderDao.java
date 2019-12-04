@@ -1,6 +1,8 @@
 package com.ascending.jdbc;
 
+import com.ascending.model.Customer;
 import com.ascending.model.Order;
+import com.ascending.model.Product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,12 +48,12 @@ public class OrderDao {
                 LocalDate order_date = rs.getObject("order_date", LocalDate.class);
 
                 //Fill the object
-                Order order = new Order();
-                order.setId(id);
-                order.setCustomer_id(customer_id);
-                order.setProduct_id(product_id);
-                order.setPayment(payment);
-                order.setOrder_date(order_date);
+                Customer customer = new Customer();
+                customer.setId(customer_id);
+                Product product = new Product();
+                product.setId(product_id);
+
+                Order order = new Order(customer, product,payment);
                 orders.add(order);
             }
 
@@ -87,7 +89,7 @@ public class OrderDao {
             logger.info("Creating statement...");
             stmt = conn.createStatement();
             String insert_sql = "INSERT INTO sneaker_order (customer_id, product_id, payment) " +
-                    "values ('" + order.getCustomer_id() + "', '" + order.getProduct_id() + "','" + order.getPayment() + "');";
+                    "values ('" + order.getCustomer().getId() + "', '" + order.getProduct().getId() + "','" + order.getPayment() + "');";
             rowsInserted = stmt.executeUpdate(insert_sql);
 
             if ( rowsInserted == 1){

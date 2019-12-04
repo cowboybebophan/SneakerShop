@@ -2,10 +2,25 @@ package com.ascending.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Table(name = "product")
 public class Product {
+    public Product() {
+
+    }
+
+    public Product(int id) {
+        this.id = id;
+    }
+
+    public Product(String name, String description, BigDecimal price, int stock) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +38,9 @@ public class Product {
 
     @Column(name = "stock")
     private int stock;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private Set<Order> orders;
 
     public int getId() {
         return id;
