@@ -24,27 +24,6 @@ public class OrderDaoTest {
     public static void init(){ orderDao = new OrderDaoImpl(); }
 
     @Test
-    public void getOrders() {
-        List<Order> orders= orderDao.getOrders();
-        int expectedNumOfOrder = 8;
-
-        for (Order order : orders){
-            logger.debug(order.toString());
-        }
-
-        Assert.assertEquals(expectedNumOfOrder, orders.size());
-    }
-
-    @Test
-    public void getOrderById() {
-        int orderId = 1;
-        order = orderDao.getOrderById(orderId);
-        logger.debug(order.toString());
-
-        Assert.assertEquals(orderId, order.getId());
-    }
-
-    @Test
     public void saveOrder() {
         customer = new Customer(3);
         product = new Product(3);
@@ -88,5 +67,26 @@ public class OrderDaoTest {
 
         order.setPayment("Venmo");
         orderDao.update(order);
+    }
+
+    @Test
+    public void getOrders() {
+        List<Order> orders= orderDao.getOrders();
+        int expectedNumOfOrder = 8;
+
+        for (Order order : orders){
+            logger.debug(order.toString());
+        }
+
+        Assert.assertEquals(expectedNumOfOrder, orders.size());
+    }
+
+    @Test
+    public void getOrderById() {
+        int orderId = 1;
+        order = orderDao.getOrderById(orderId);
+        logger.debug(order.toString());
+
+        Assert.assertEquals(orderId, order.getId());
     }
 }

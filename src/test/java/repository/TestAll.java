@@ -13,5 +13,5 @@ import org.junit.runners.Suite;
         ProductDaoTest.class
 })
 public class TestAll {
-    
+
 }

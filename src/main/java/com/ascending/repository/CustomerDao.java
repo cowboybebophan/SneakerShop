@@ -10,4 +10,6 @@ public interface CustomerDao {
     boolean delete(String customerName);
     List<Customer> getCustomers();
     Customer getCustomerByName(String customerName);
+    List<Customer> getCustomerAndOrders(String cusName);
+    List<Customer> getCustomerAndOrdersAndProducts(String cusName);
 }

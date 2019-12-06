@@ -20,27 +20,6 @@ public class CustomerDaoTest {
     public static void init(){ customerDao = new CustomerDaoImpl(); }
 
     @Test
-    public void getCustomers() {
-        List<Customer> customers= customerDao.getCustomers();
-        int expectedNumOfCustomer = 4;
-
-        for (Customer customer : customers){
-            logger.debug(customer.toString());
-        }
-
-        Assert.assertEquals(expectedNumOfCustomer, customers.size());
-    }
-
-    @Test
-    public void getCustomerByName() {
-        String customerName = "Han";
-        customer = customerDao.getCustomerByName(customerName);
-        logger.debug(customer.toString());
-
-        Assert.assertEquals(customerName, customer.getName());
-    }
-
-    @Test
     public void saveCustomer() {
         customer = new Customer();
 
@@ -89,5 +68,43 @@ public class CustomerDaoTest {
 
         customer.setName("Han");
         customerDao.update(customer);
+    }
+
+    @Test
+    public void getCustomers() {
+        List<Customer> customers= customerDao.getCustomers();
+        int expectedNumOfCustomer = 4;
+
+        for (Customer customer : customers){
+            logger.debug(customer.toString());
+        }
+
+        Assert.assertEquals(expectedNumOfCustomer, customers.size());
+    }
+
+    @Test
+    public void getCustomerByName() {
+        String customerName = "Han";
+        customer = customerDao.getCustomerByName(customerName);
+        logger.debug(customer.toString());
+
+        Assert.assertEquals(customerName, customer.getName());
+    }
+
+    @Test
+    public void getCustomerAndOrders(){
+        String cusName = "Han";
+        List<Customer> resultList = customerDao.getCustomerAndOrders(cusName);
+
+        Assert.assertEquals(1, resultList.size());
+
+    }
+
+    @Test
+    public void getCustomerAndOrdersAndProducts(){
+        String cusName = "Han";
+        List<Customer> resultList = customerDao.getCustomerAndOrdersAndProducts(cusName);
+
+        Assert.assertEquals(1, resultList.size());
     }
 }

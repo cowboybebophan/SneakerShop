@@ -10,4 +10,7 @@ public interface OrderDao {
     boolean delete(int orderId);
     List<Order> getOrders();
     Order getOrderById(int orderId);
+    /*List<Object[]> getOrderAndCustomer(String orderId);
+    List<Object[]> getOrderAndCustomerAndProduct(String orderId);*/
+
 }

@@ -14,26 +14,6 @@ import java.util.List;
 public class OrderDaoImpl implements OrderDao{
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public List<Order> getOrders(){
-        String hql = "FROM Order";
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            Query<Order> query= session.createQuery(hql);
-            return query.list();
-        }
-    }
-
-    public Order getOrderById(int orderId){
-        if (orderId <= 0) return null;
-
-        String hql = "FROM Order as ord where ord.id = :id";
-
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            Query<Order> query = session.createQuery(hql);
-            query.setParameter("id", orderId);
-            return query.uniqueResult();
-        }
-    }
-
     public boolean save(Order order){
         Transaction transaction = null;
         boolean isSuccess = true;
@@ -98,4 +78,25 @@ public class OrderDaoImpl implements OrderDao{
         return isSuccess;
 
     }
+
+    public List<Order> getOrders(){
+        String hql = "FROM Order";
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            Query<Order> query= session.createQuery(hql);
+            return query.list();
+        }
+    }
+
+    public Order getOrderById(int orderId){
+        if (orderId <= 0) return null;
+
+        String hql = "FROM Order as ord where ord.id = :id";
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            Query<Order> query = session.createQuery(hql);
+            query.setParameter("id", orderId);
+            return query.uniqueResult();
+        }
+    }
+    
 }

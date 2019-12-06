@@ -18,9 +18,9 @@ public class HibernateUtil {
     /* Define JVM options
     -Ddatabase.driver=org.postgresql.Driver
     -Ddatabase.dialect=org.hibernate.dialect.PostgreSQL9Dialect
-    -Ddatabase.url=jdbc:postgresql://localhost:5432/training_db
+    -Ddatabase.url=jdbc:postgresql://localhost:5432/sneaker_db
     -Ddatabase.user=admin
-    -Ddatabase.password=Training123!
+    -Ddatabase.password=1234
     */
 
     public static SessionFactory getSessionFactory() {

@@ -1,6 +1,8 @@
 package com.ascending.repository;
 
 import com.ascending.model.Customer;
+import com.ascending.model.Order;
+import com.ascending.model.Product;
 import com.ascending.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -10,32 +12,10 @@ import org.slf4j.LoggerFactory;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CustomerDaoImpl implements CustomerDao{
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @Override
-    public List<Customer> getCustomers(){
-        String hql = "FROM Customer";
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            Query<Customer> query= session.createQuery(hql);
-            return query.list();
-        }
-    }
-
-    @Override
-    public Customer getCustomerByName(String customerName){
-        if (customerName == null) return null;
-
-        String hql = "FROM Customer as cust where lower(cust.name) = :name";
-
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            Query<Customer> query = session.createQuery(hql);
-            query.setParameter("name", customerName.toLowerCase());
-
-            return query.uniqueResult();
-        }
-    }
 
     @Override
     public boolean save(Customer customer){
@@ -102,5 +82,72 @@ public class CustomerDaoImpl implements CustomerDao{
         if (isSuccess) logger.debug(String.format("The customer %s was updated.", customer.toString()));
 
         return isSuccess;
+    }
+
+    @Override
+    public List<Customer> getCustomers(){
+        String hql = "FROM Customer";
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            Query<Customer> query= session.createQuery(hql);
+            return query.list();
+        }
+    }
+
+    @Override
+    public Customer getCustomerByName(String customerName){
+        if (customerName == null) return null;
+
+        String hql = "FROM Customer as cust where lower(cust.name) = :name";
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            Query<Customer> query = session.createQuery(hql);
+            query.setParameter("name", customerName.toLowerCase());
+
+            return query.uniqueResult();
+        }
+    }
+
+    @Override
+    public List<Customer> getCustomerAndOrders(String cusName){
+        if (cusName == null) return null;
+
+        String hql = "FROM Customer as cus left join fetch cus.orders where lower(cus.name) = :name";
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            Query query = session.createQuery(hql);
+            query.setParameter("name", cusName.toLowerCase());
+
+            List<Customer> resultList = query.list();
+
+            resultList = resultList.stream().distinct().collect(Collectors.toList());
+
+            for (Customer obj : resultList) {
+                logger.debug(obj.getOrders().toString());
+            }
+
+            return resultList;
+        }
+    }
+
+    @Override
+    public List<Customer> getCustomerAndOrdersAndProducts(String cusName){
+        if (cusName == null) return null;
+
+        String hql = "FROM Customer as cus left join fetch cus.orders as ods left join fetch ods.product as prod " +
+                "where lower(cus.name) = :name";
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            Query query = session.createQuery(hql);
+            query.setParameter("name", cusName.toLowerCase());
+
+            List<Customer> resultList = query.list();
+
+            resultList = resultList.stream().distinct().collect(Collectors.toList());
+
+            for (Customer obj : resultList) {
+                logger.debug(obj.getOrders().toString());
+            }
+            return resultList;
+        }
     }
 }

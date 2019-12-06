@@ -82,6 +82,20 @@ public class Product {
         this.stock = stock;
     }
 
+    public Set<Order> getOrders() {
+        try {
+            int size = orders.size();
+        }
+        catch (Exception e) {
+            return null;
+        }
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
