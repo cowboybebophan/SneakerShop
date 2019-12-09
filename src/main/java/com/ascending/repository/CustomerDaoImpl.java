@@ -9,13 +9,16 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Repository
 public class CustomerDaoImpl implements CustomerDao{
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired private Logger logger;
 
     @Override
     public boolean save(Customer customer){
@@ -97,7 +100,7 @@ public class CustomerDaoImpl implements CustomerDao{
     public Customer getCustomerByName(String customerName){
         if (customerName == null) return null;
 
-        String hql = "FROM Customer as cust where lower(cust.name) = :name";
+        String hql = "FROM Customer as cus where lower(cus.name) = :name";
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             Query<Customer> query = session.createQuery(hql);
