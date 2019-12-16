@@ -33,7 +33,7 @@ public class CustomerService {
         return customerDao.delete(cusName);
     }
 
-    public boolean upadte(Customer customer){
+    public boolean update(Customer customer){
         return customerDao.update(customer);
     }
 
