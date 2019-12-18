@@ -1,5 +1,7 @@
 package com.ascending.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -25,6 +27,7 @@ public class Order {
     @Column(name = "order_date")
     private LocalDate order_date;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;

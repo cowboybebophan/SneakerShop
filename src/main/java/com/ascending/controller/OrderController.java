@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = {"/orders"})
+@RequestMapping(value = {"/orders", "/ord"})
 public class OrderController {
     //Autowired
     private Logger logger;
@@ -23,16 +23,28 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET, produces = {MediaType.APPLICATION_XML_VALUE})
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Order> getOrders(){
         List<Order> orders = orderService.getOrders();
         return orders;
     }
 
-    @RequestMapping(value = "/{orderId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/order/{orderId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Order getOrderById(@PathVariable int orderId){
         Order order = orderService.getOrderById(orderId);
         return order;
+    }
+
+    @RequestMapping(value = "/customer/{cusName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<Order> getOrderByCustomer(@PathVariable String cusName){
+        List<Order> orders = orderService.getOrderByCustomer(cusName);
+        return orders;
+    }
+
+    @RequestMapping(value = "/product/{prodId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<Order> getOrderByProduct(@PathVariable int prodId){
+        List<Order> orders = orderService.getOrderByProduct(prodId);
+        return orders;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
@@ -67,6 +79,7 @@ public class OrderController {
 
         return msg;
     }
+
 
 
 

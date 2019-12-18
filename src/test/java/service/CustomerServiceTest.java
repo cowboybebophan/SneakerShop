@@ -57,12 +57,4 @@ public class CustomerServiceTest {
         Assert.assertEquals(1, customers.size());
     }
 
-    @Test
-    public void getCustomerAndOrdersAndProducts(){
-        String cusName = "Han";
-        List<Customer> customers = customerService.getCustomerAndOrders(cusName);
-
-        Assert.assertEquals(1, customers.size());
-    }
-
 }

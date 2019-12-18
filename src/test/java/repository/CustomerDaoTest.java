@@ -99,12 +99,4 @@ public class CustomerDaoTest {
         Assert.assertEquals(1, resultList.size());
 
     }
-
-    @Test
-    public void getCustomerAndOrdersAndProducts(){
-        String cusName = "Han";
-        List<Customer> resultList = customerDao.getCustomerAndOrdersAndProducts(cusName);
-
-        Assert.assertEquals(1, resultList.size());
-    }
 }

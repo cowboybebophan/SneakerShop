@@ -102,4 +102,21 @@ public class OrderDaoImpl implements OrderDao{
         }
     }
 
+    public List<Order> getOrderByCustomer(String cusName){
+        String hql = "FROM Order as ord where ord.customer.name = :cusName";
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            Query<Order> query = session.createQuery(hql);
+            query.setParameter("cusName", cusName);
+            return query.list();
+        }
+    }
+
+    public List<Order> getOrderByProduct(int prodId){
+        String hql = "FROM Order as ord where ord.product.id = :prodId";
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            Query<Order> query = session.createQuery(hql);
+            query.setParameter("prodId", prodId);
+            return query.list();
+        }
+    }
 }

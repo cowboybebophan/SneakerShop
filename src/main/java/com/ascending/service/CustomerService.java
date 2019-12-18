@@ -49,8 +49,4 @@ public class CustomerService {
         return customerDao.getCustomerAndOrders(cusName);
     }
 
-    public List<Customer> getCustomerAndOrdersAndProducts(String cusName){
-        return customerDao.getCustomerAndOrdersAndProducts(cusName);
-    }
-
 }

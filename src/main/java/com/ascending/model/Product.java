@@ -1,5 +1,7 @@
 package com.ascending.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Set;
@@ -39,6 +41,7 @@ public class Product {
     @Column(name = "stock")
     private int stock;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private Set<Order> orders;
 

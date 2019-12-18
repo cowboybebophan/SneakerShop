@@ -9,5 +9,6 @@ public interface ProductDao {
     boolean update(Product product);
     boolean delete(String productName);
     List<Product> getProducts();
-    Product getProductByName(String productName);
+    Product getProductByName(String prodName);
+    List<Product> getProductAndOrder(String prodName);
 }

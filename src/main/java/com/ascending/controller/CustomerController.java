@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/customers")
+@RequestMapping(value = {"/customers", "/cus"})
 public class CustomerController {
     //@Autowired
     private Logger logger;
@@ -27,21 +27,15 @@ public class CustomerController {
         return customerService.getCustomers();
     }
 
-    @RequestMapping(value = "/{customerName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Customer getCustomersByName(@PathVariable String customerName){
-        Customer customer = customerService.getCustomerByName(customerName);
+    @RequestMapping(value = "/{cusName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Customer getCustomersByName(@PathVariable String cusName){
+        Customer customer = customerService.getCustomerByName(cusName);
         return customer;
     }
 
-    @RequestMapping(value = "/with-orders", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<Customer> getCustomerAndOrders(@RequestBody String customerName){
-        List<Customer> customers = customerService.getCustomerAndOrders(customerName);
-        return customers;
-    }
-
-    @RequestMapping(value = "/with-orders-and-products", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<Customer> getCustomerAndOrdersAndProducts(@RequestBody String customerName){
-        List<Customer> customers = customerService.getCustomerAndOrdersAndProducts(customerName);
+    @RequestMapping(value = "/orders/{cusName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<Customer> getCustomerAndOrders(@PathVariable String cusName){
+        List<Customer> customers = customerService.getCustomerAndOrders(cusName);
         return customers;
     }
 
@@ -56,11 +50,11 @@ public class CustomerController {
         return msg;
     }
 
-    @RequestMapping(value = "/{customerName}", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public String deleteCustomer(@PathVariable String customerName){
-        logger.debug("Customer name:" + customerName);
+    @RequestMapping(value = "/{cusName}", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public String deleteCustomer(@PathVariable String cusName){
+        logger.debug("Customer name:" + cusName);
         String msg = "The customer was deleted";
-        boolean isSuccess = customerService.delete(customerName);
+        boolean isSuccess = customerService.delete(cusName);
 
         if (!isSuccess) msg = "the customer was not deleted.";
 

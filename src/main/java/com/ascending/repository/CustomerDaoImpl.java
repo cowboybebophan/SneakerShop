@@ -131,26 +131,4 @@ public class CustomerDaoImpl implements CustomerDao{
             return resultList;
         }
     }
-
-    @Override
-    public List<Customer> getCustomerAndOrdersAndProducts(String cusName){
-        if (cusName == null) return null;
-
-        String hql = "FROM Customer as cus left join fetch cus.orders as ods left join fetch ods.product as prod " +
-                "where lower(cus.name) = :name";
-
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
-            Query query = session.createQuery(hql);
-            query.setParameter("name", cusName.toLowerCase());
-
-            List<Customer> resultList = query.list();
-
-            resultList = resultList.stream().distinct().collect(Collectors.toList());
-
-            for (Customer obj : resultList) {
-                logger.debug(obj.getOrders().toString());
-            }
-            return resultList;
-        }
-    }
 }

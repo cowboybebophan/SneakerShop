@@ -94,6 +94,31 @@ public class OrderServiceTest {
         logger.debug(order.toString());
 
         Assert.assertEquals(orderId, order.getId());
+    }
 
+    @Test
+    public void getOrderByCustomer(){
+        String cusName = "Han";
+        List<Order> orders = orderService.getOrderByCustomer(cusName);
+        int expectedNumOfOrders = 2;
+
+        for (Order order : orders){
+            logger.debug(order.toString());
+        }
+
+        Assert.assertEquals(expectedNumOfOrders, orders.size());
+    }
+
+    @Test
+    public void getOrderByProduct(){
+        int prodId = 1;
+        List<Order> orders = orderService.getOrderByProduct(prodId);
+        int expectedNumOfOrders = 1;
+
+        for (Order order : orders){
+            logger.debug(order.toString());
+        }
+
+        Assert.assertEquals(expectedNumOfOrders, orders.size());
     }
 }

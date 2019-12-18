@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = {"/products"})
+@RequestMapping(value = {"/products", "/prod"})
 public class ProductController {
     //Autowired
     private Logger logger;
@@ -29,10 +29,16 @@ public class ProductController {
         return products;
     }
 
-    @RequestMapping(value = "/{productName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Product getProductByName(@PathVariable String productName){
-        Product product = productService.getProductByName(productName);
+    @RequestMapping(value = "/{prodName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Product getProductByName(@PathVariable String prodName){
+        Product product = productService.getProductByName(prodName);
         return product;
+    }
+
+    @RequestMapping(value = "/order/{prodName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public List<Product> getProductAndOrder(@PathVariable String prodName){
+        List<Product> products = productService.getProductAndOrder(prodName);
+        return products;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})

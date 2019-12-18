@@ -42,4 +42,12 @@ public class OrderService {
     public Order getOrderById(int orderId){
         return orderDao.getOrderById(orderId);
     }
+
+    public List<Order> getOrderByCustomer(String cusName){
+        return orderDao.getOrderByCustomer(cusName);
+    }
+
+    public List<Order> getOrderByProduct(int prodId){
+        return orderDao.getOrderByProduct(prodId);
+    }
 }

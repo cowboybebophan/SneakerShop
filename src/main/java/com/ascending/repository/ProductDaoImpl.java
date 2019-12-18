@@ -28,15 +28,28 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Product getProductByName(String productName){
-        if (productName == null) return null;
+    public Product getProductByName(String prodName){
+        if (prodName == null) return null;
         String hql = "FROM Product as prod where lower(prod.name) = :name";
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<Product> query = session.createQuery(hql);
-            query.setParameter("name", productName.toLowerCase());
+            query.setParameter("name", prodName.toLowerCase());
 
             return query.uniqueResult();
+        }
+    }
+
+    @Override
+    public List<Product> getProductAndOrder(String prodName){
+        if (prodName == null) return null;
+        String hql = "FROM Product as prod left join fetch prod.orders where lower(prod.name) = :name";
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Product> query = session.createQuery(hql);
+            query.setParameter("name", prodName.toLowerCase());
+
+            return query.list();
         }
     }
 
