@@ -96,6 +96,9 @@ public class Product {
     }
 
     public void setOrders(Set<Order> orders) {
+        for (Order ord : orders){
+            if (ord.getProduct() == null) ord.setProduct(this);
+        }
         this.orders = orders;
     }
 

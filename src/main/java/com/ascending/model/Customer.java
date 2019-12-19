@@ -1,5 +1,7 @@
 package com.ascending.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -39,6 +41,7 @@ public class Customer {
     @Column(name = "address")
     private String address;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private Set<Order> orders;
 
@@ -93,6 +96,9 @@ public class Customer {
     }
 
     public void setOrders(Set<Order> orders) {
+        for (Order o : orders) {
+            if (o.getCustomer() == null) o.setCustomer(this);
+        }
         this.orders = orders;
     }
 

@@ -17,6 +17,7 @@ public class CustomerController {
     //@Autowired
     private CustomerService customerService;
 
+    @Autowired
     public CustomerController(Logger logger, CustomerService customerService ) {
         this.logger = logger;
         this.customerService = customerService;

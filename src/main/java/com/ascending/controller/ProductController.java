@@ -12,9 +12,9 @@ import java.util.List;
 @RestController
 @RequestMapping(value = {"/products", "/prod"})
 public class ProductController {
-    //Autowired
+    //@Autowired
     private Logger logger;
-    //Autowired
+    //@Autowired
     private ProductService productService;
 
     @Autowired
