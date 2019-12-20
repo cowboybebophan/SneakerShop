@@ -7,11 +7,18 @@ How do you choose the perfect pair? There are so many factors you need to consid
 
 <img src="https://cdn.vox-cdn.com/thumbor/dF0zZT8QnwLnGj4APGe1wTDU2hI=/0x0:6720x4480/1820x1213/filters:focal(2823x1703:3897x2777):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/58617409/PHOTO_CREDIT__Giulia_White__2F_GOAT.0.jpg" width="74%">
 
-## Getting Started
+## Table of Contents
+- [1. Description](#1 - description)
+- [2. Getting Started](#2 - getting started)
+- [3. Database Setup](#3 - database setup)
+
+## 1. Description
+
+## 2. Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.  
 See deployment for notes on how to deploy the project on a live system.
 
-## Database setup
+## 3. Database Setup
 
 >Use `Docker` to setup local environment.
 >

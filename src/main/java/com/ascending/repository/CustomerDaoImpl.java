@@ -1,14 +1,12 @@
 package com.ascending.repository;
 
 import com.ascending.model.Customer;
-import com.ascending.model.Order;
-import com.ascending.model.Product;
 import com.ascending.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
