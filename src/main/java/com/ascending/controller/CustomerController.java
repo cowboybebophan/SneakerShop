@@ -34,7 +34,7 @@ public class CustomerController {
         return customer;
     }
 
-    @RequestMapping(value = "/orders/{cusName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/{cusName}/orders", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Customer> getCustomerAndOrders(@PathVariable String cusName){
         List<Customer> customers = customerService.getCustomerAndOrders(cusName);
         return customers;

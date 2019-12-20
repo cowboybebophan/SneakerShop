@@ -1,7 +1,9 @@
 package com.ascending.controller;
 
 import com.ascending.model.Order;
+import com.ascending.service.CustomerService;
 import com.ascending.service.OrderService;
+import com.ascending.service.ProductService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -16,11 +18,17 @@ public class OrderController {
     private Logger logger;
     //@Autowired
     private OrderService orderService;
+    //@Autowired
+    private CustomerService customerService;
+    //Autowired
+    private ProductService productService;
 
     @Autowired
-    public OrderController(Logger logger, OrderService orderService) {
+    public OrderController(Logger logger, OrderService orderService, CustomerService customerService, ProductService productService) {
         this.logger = logger;
         this.orderService = orderService;
+        this.customerService = customerService;
+        this.productService = productService;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -29,28 +37,30 @@ public class OrderController {
         return orders;
     }
 
-    @RequestMapping(value = "/order/{orderId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/id/{orderId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Order getOrderById(@PathVariable int orderId){
         Order order = orderService.getOrderById(orderId);
         return order;
     }
 
-    @RequestMapping(value = "/customer/{cusName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/cus/{cusName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Order> getOrderByCustomer(@PathVariable String cusName){
         List<Order> orders = orderService.getOrderByCustomer(cusName);
         return orders;
     }
 
-    @RequestMapping(value = "/product/{prodId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/prod/{prodId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Order> getOrderByProduct(@PathVariable int prodId){
         List<Order> orders = orderService.getOrderByProduct(prodId);
         return orders;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public String createOrder(@RequestBody Order order){
+    @RequestMapping(value = "cus/{cusName}/prod/{prodId}", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public String createOrder(@RequestBody Order order, @PathVariable("cusName") String cusName, @PathVariable("prodId") int prodId){
+        order.setCustomer(customerService.getCustomerByName(cusName));
+        order.setProduct(productService.getProductById(prodId));
         logger.debug("Order: " + order.toString());
-        String msg = "The order was created.";
+        String msg = "A new order was created.";
         boolean isSuccess = orderService.save(order);
 
         if (!isSuccess) msg = "The order was not created.";
@@ -58,8 +68,8 @@ public class OrderController {
         return msg;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.PUT, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public String updateOrder(@RequestBody Order order){
+    @RequestMapping(value = "/{orderId}", method = RequestMethod.PUT, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public String updateOrder(@RequestBody Order order, @PathVariable int orderId){
         logger.debug("Order: " + order.toString());
         String msg = "The order was updated.";
         boolean isSuccess = orderService.update(order);
@@ -70,7 +80,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/{orderId}", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public String deleteOrder(@RequestBody int orderId){
+    public String deleteOrder(@PathVariable int orderId){
         logger.debug("Order Id: " + orderId);
         String msg = "The order was deleted.";
         boolean isSuccess = orderService.delete(orderId);

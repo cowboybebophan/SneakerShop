@@ -13,12 +13,14 @@ import java.util.List;
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class CustomerService {
-    /*@Autowired*/
+    //Field Injection
+    //@Autowired*
     private Logger logger;
 
-    /*@Autowired*/
+    //@Autowired
     private CustomerDao customerDao;
 
+    //Constructor Injection
     @Autowired
     public CustomerService(Logger logger, CustomerDao customerDao) {
         this.logger = logger;

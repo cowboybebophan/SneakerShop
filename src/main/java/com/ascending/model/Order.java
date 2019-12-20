@@ -25,7 +25,7 @@ public class Order {
     private String payment;
 
     @Column(name = "order_date")
-    private LocalDate order_date;
+    private LocalDate order_date = LocalDate.now();
 
     @JsonIgnore
     @ManyToOne

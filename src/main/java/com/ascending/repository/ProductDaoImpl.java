@@ -41,6 +41,18 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
+    public Product getProductById(int prodId){
+        String hql = "FROM Product as prod where prod.id = :id";
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Product> query = session.createQuery(hql);
+            query.setParameter("id", prodId);
+
+            return query.uniqueResult();
+        }
+    }
+
+    @Override
     public List<Product> getProductAndOrder(String prodName){
         if (prodName == null) return null;
         String hql = "FROM Product as prod left join fetch prod.orders where lower(prod.name) = :name";
