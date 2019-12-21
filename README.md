@@ -1,4 +1,4 @@
-# Sneaker Shop :athletic_shoe:
+# Sneaker Shop :athletic_shoe: :soccer: :basketball: :football: :baseball: :tennis:
 
 An e-commerce web development back-end project.
 
@@ -17,9 +17,7 @@ How do you choose the perfect pair?
 
 **SneakerShop** is a system that takes in all the factors into account and chooses the perfect sneaker for you.
 
-<p align="center">
-    <img src="https://cdn.vox-cdn.com/thumbor/dF0zZT8QnwLnGj4APGe1wTDU2hI=/0x0:6720x4480/1820x1213/filters:focal(2823x1703:3897x2777):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/58617409/PHOTO_CREDIT__Giulia_White__2F_GOAT.0.jpg" width="70%">
-</p>
+<img src="https://cdn.vox-cdn.com/thumbor/dF0zZT8QnwLnGj4APGe1wTDU2hI=/0x0:6720x4480/1820x1213/filters:focal(2823x1703:3897x2777):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/58617409/PHOTO_CREDIT__Giulia_White__2F_GOAT.0.jpg" width="74%">
 
 ## Tech Stack
 
