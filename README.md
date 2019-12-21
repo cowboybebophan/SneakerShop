@@ -1,5 +1,12 @@
 # Sneaker Shop
 
+* [Sneaker Shop](#sneaker-shop)     
+  * [Description](#description)     
+  * [Tech Stack](#tech-stack)       
+* [Environment Setup](#environment-setup)        
+  * [Local Environment Setup](#local-environment-setup)     
+  * [Database Setup](#database-setup)       
+
 ## Description
 Imagine walking into a sneaker shop and seeing hundreds of sneakers displaying in front of you.
 
