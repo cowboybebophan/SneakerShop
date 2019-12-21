@@ -1,5 +1,6 @@
 # Sneaker Shop
 
+## Table of Contents
 * [Sneaker Shop](#sneaker-shop)     
   * [Description](#description)     
   * [Tech Stack](#tech-stack)       
@@ -19,10 +20,10 @@ How do you choose the perfect pair? There are so many factors you need to consid
 ## Tech Stack
 These are the technologies I have been using while building up the project.
 
-Frameworks: Spring-boot, Hibernate  
-Tools: Git, Docker, Maven, Flyway, pgAdmin, Postman     
-Testing: Junit, Mockito  
-Database: PostgresSQL   
+***Tools*** : `Git` `Docker` `Maven` `Flyway` `pgAdmin` `Postman`  
+***Frameworks*** : `Spring-boot` `Hibernate`       
+***Testing*** : `Junit` `Mockito`  
+***Database*** : `PostgresSQL`   
 
 # Environment Setup
 These instructions will help you setup the environment that the project is based on.    
