@@ -76,10 +76,10 @@ Note: If port 5432 is already in use, kill all postgres processes by using:
     -Ddatabase.dialect=org.hibernate.dialect.PostgreSQL9Dialect
 
 ## Database Migration
->Use `Flyway` to achieve database migrations.
+>Use `Flyway` to migrate database.
 >
 
-`Flyway` is a `Maven` plugin, it makes database migration easy.     
+`Flyway` is a `Maven` plugin, it makes database migrations easy.     
 
 Compile your source first:  
 
