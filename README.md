@@ -1,6 +1,6 @@
-# Sneaker Shop :athletic_shoe: :soccer: :basketball: :football: :baseball: :tennis:
+# Sneaker Shop :athletic_shoe: :soccer: :basketball: :football:
 
-An e-commerce web development back-end project.
+A back-end web development project.
 
 ## Table of Contents
 * [Sneaker Shop](#sneaker-shop)     
