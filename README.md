@@ -11,13 +11,15 @@ An e-commerce web development back-end project.
   * [Database Setup](#database-setup)       
 
 ## Description
-Imagine walking into a sneaker shop and seeing hundreds of sneakers displaying in front of you.
-
-How do you choose the perfect pair? There are so many factors you need to consider: size, style, brand, color, material...
+Imagine walking into a sneaker shop and seeing hundreds of sneakers displaying in front of you.     
+There are so many factors you need to consider: `size` `style` `brand` `color` `material`...        
+How do you choose the perfect pair?         
 
 **SneakerShop** is a system that takes in all the factors into account and chooses the perfect sneaker for you.
 
-<img src="https://cdn.vox-cdn.com/thumbor/dF0zZT8QnwLnGj4APGe1wTDU2hI=/0x0:6720x4480/1820x1213/filters:focal(2823x1703:3897x2777):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/58617409/PHOTO_CREDIT__Giulia_White__2F_GOAT.0.jpg" width="74%">
+<p align="center">
+    <img src="https://cdn.vox-cdn.com/thumbor/dF0zZT8QnwLnGj4APGe1wTDU2hI=/0x0:6720x4480/1820x1213/filters:focal(2823x1703:3897x2777):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/58617409/PHOTO_CREDIT__Giulia_White__2F_GOAT.0.jpg" width="70%">
+</p>
 
 ## Tech Stack
 
