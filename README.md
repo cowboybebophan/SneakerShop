@@ -1,4 +1,4 @@
-# Sneaker Shop
+# Sneaker Shop :mans_shoe:
 
 ## Table of Contents
 * [Sneaker Shop](#sneaker-shop)     
@@ -18,12 +18,11 @@ How do you choose the perfect pair? There are so many factors you need to consid
 <img src="https://cdn.vox-cdn.com/thumbor/dF0zZT8QnwLnGj4APGe1wTDU2hI=/0x0:6720x4480/1820x1213/filters:focal(2823x1703:3897x2777):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/58617409/PHOTO_CREDIT__Giulia_White__2F_GOAT.0.jpg" width="74%">
 
 ## Tech Stack
-These are the technologies I have been using while building up the project.
 
-***Tools*** : `Git` `Docker` `Maven` `Flyway` `pgAdmin` `Postman`  
-***Frameworks*** : `Spring-boot` `Hibernate`       
-***Testing*** : `Junit` `Mockito`  
-***Database*** : `PostgresSQL`   
+**Database** : `PostgresSQL`  
+**Testing** : `JUnit` `Mockito`  
+**Frameworks** : `Spring-boot` `Hibernate`   
+**Tools** : `Git` `Docker` `Maven` `Flyway` `pgAdmin` `Postman`  
 
 # Environment Setup
 These instructions will help you setup the environment that the project is based on.    
