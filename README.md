@@ -1,4 +1,4 @@
-# Sneaker Shop :athletic_shoe: :soccer: :basketball: :football:
+# Sneaker Shop :athletic_shoe: :soccer: :basketball: :football: :baseball: :tennis:
 
 A back-end web development project.
 
@@ -24,6 +24,7 @@ How do you choose the perfect pair?
 **Database** : `PostgresSQL`  
 **Testing** : `JUnit` `Mockito`  
 **Frameworks** : `Spring-boot` `Hibernate`   
+**Cloud Deployment** : `AWS S3` `AWS SQS`   
 **Tools** : `Git` `Docker` `Maven` `Flyway` `pgAdmin` `Postman`  
 
 # Environment Setup
