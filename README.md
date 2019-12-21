@@ -1,4 +1,6 @@
 # Sneaker Shop
+
+## Description
 Imagine walking into a sneaker shop and seeing hundreds of sneakers displaying in front of you.
 
 How do you choose the perfect pair? There are so many factors you need to consider: size, style, brand, color, material...
@@ -7,19 +9,18 @@ How do you choose the perfect pair? There are so many factors you need to consid
 
 <img src="https://cdn.vox-cdn.com/thumbor/dF0zZT8QnwLnGj4APGe1wTDU2hI=/0x0:6720x4480/1820x1213/filters:focal(2823x1703:3897x2777):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/58617409/PHOTO_CREDIT__Giulia_White__2F_GOAT.0.jpg" width="74%">
 
-## Table of Contents
-- [1. Description](#1 - description)
-- [2. Getting Started](#2 - getting started)
-- [3. Database Setup](#3 - database setup)
+## Tech Stack
+These are the technologies I have been using while building up the project.
 
-## 1. Description
+Frameworks: Spring-boot, Hibernate  
+Tools: Git, Docker, Maven, Flyway, pgAdmin, Postman     
+Testing: Junit, Mockito  
+Database: PostgresSQL   
 
-## 2. Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.  
-See deployment for notes on how to deploy the project on a live system.
+# Environment Setup
+These instructions will help you setup the environment that the project is based on.    
 
-## 3. Database Setup
-
+## Local Environment Setup
 >Use `Docker` to setup local environment.
 >
 List all Docker images and containers:
@@ -43,3 +44,7 @@ Restart a exited container:
 Note: If port 5432 is already in use, kill all postgres processes by using:
     
     sudo pkill -u postgres
+
+## Database Setup
+
+
