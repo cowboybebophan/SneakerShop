@@ -1,4 +1,6 @@
-# Sneaker Shop :mans_shoe:
+# Sneaker Shop :athletic_shoe:
+
+An e-commerce web development back-end project.
 
 ## Table of Contents
 * [Sneaker Shop](#sneaker-shop)     
