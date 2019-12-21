@@ -14,7 +14,9 @@ A back-end web development project.
 
 ## Idea
 Imagine walking into a sneaker shop and seeing hundreds of sneakers displaying in front of you.     
-There are so many factors you need to consider: `size` `style` `brand` `color` `material`...        
+
+There are so many factors you need to consider: `size` `style` `brand` `color` `material`...   
+     
 How do you choose the perfect pair?         
 
 **SneakerShop** is a system that takes in all the factors into account and chooses the perfect sneaker for you.
@@ -74,7 +76,7 @@ Note: If port 5432 is already in use, kill all postgres processes by using:
     -Ddatabase.dialect=org.hibernate.dialect.PostgreSQL9Dialect
 
 ## Database Migration
->Use `Flyway` to migrate data.
+>Use `Flyway` to achieve database migrations.
 >
 
 `Flyway` is a `Maven` plugin, it makes database migration easy.     
@@ -83,7 +85,7 @@ Compile your source first:
 
     mvn compile
     
-Data migration: 
+Database migration: 
 
     mvn flyway:migrate
     
