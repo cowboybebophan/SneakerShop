@@ -3,14 +3,16 @@
 A back-end web development project.
 
 ## Table of contents
-* [Sneaker Shop](#sneaker-shop)     
-  * [Description](#description)     
+* [Sneaker Shop](#sneaker-shop-athletic_shoe)     
+  * [Idea](#idea)     
   * [Tech Stack](#tech-stack)       
-* [Environment Setup](#environment-setup)        
-  * [Local Environment Setup](#local-environment-setup)     
-  * [Database Setup](#database-setup)       
+* [Environment Setup](#environment-setup)    
+  * [Maven](#maven)    
+  * [Docker](#docker)     
+  * [Database Connection](#database-connection)  
+  * [Database Migration](#database-migration)     
 
-## Description
+## Idea
 Imagine walking into a sneaker shop and seeing hundreds of sneakers displaying in front of you.     
 There are so many factors you need to consider: `size` `style` `brand` `color` `material`...        
 How do you choose the perfect pair?         
@@ -28,8 +30,17 @@ How do you choose the perfect pair?
 # Environment Setup
 These instructions will help you setup the environment that the project is based on.    
 
-## Local Environment Setup
->Use `Docker` to setup local environment.
+## Maven    
+>Use `Maven` to manage the project.     
+>
+`Maven` is a software project management and comprehension tool.   
+ 
+It manages a project's **dependencies** and helps with **build automation**.
+
+All the dependencies and plugins are in the `pom.xml` file.     
+
+## Docker
+>Use `Docker` to create Postgres container.
 >
 List all Docker images and containers:
 
@@ -53,6 +64,32 @@ Note: If port 5432 is already in use, kill all postgres processes by using:
     
     sudo pkill -u postgres
 
-## Database Setup
+## Database Connection
+>Use `VM Option` to create database connection.
+>
+    -Ddatabase.driver=org.postgresql.Driver
+    -Ddatabase.url=jdbc:postgresql://localhost:${port}/${database_name}
+    -Ddatabase.user=${user_name}
+    -Ddatabase.password=${password}
+    -Ddatabase.dialect=org.hibernate.dialect.PostgreSQL9Dialect
+
+## Database Migration
+>Use `Flyway` to migrate data.
+>
+
+`Flyway` is a `Maven` plugin, it makes database migration easy.     
+
+Compile your source first:  
+
+    mvn compile
+    
+Data migration: 
+
+    mvn flyway:migrate
+    
+
+
+
+
 
 
