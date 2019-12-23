@@ -1,8 +1,8 @@
 package com.ascending.repository;
 
 import com.ascending.model.Customer;
-import com.ascending.util.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
@@ -16,7 +16,17 @@ import java.util.stream.Collectors;
 
 @Repository
 public class CustomerDaoImpl implements CustomerDao{
-    @Autowired private Logger logger;
+    //@Autowired
+    private Logger logger;
+
+    //@Autowired
+    private SessionFactory sessionFactory;
+
+    @Autowired
+    public CustomerDaoImpl(Logger logger, SessionFactory sessionFactory) {
+        this.logger = logger;
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public boolean save(Customer customer){
@@ -24,7 +34,7 @@ public class CustomerDaoImpl implements CustomerDao{
         boolean isSuccess = true;
 
         try{
-            Session session = HibernateUtil.getSessionFactory().openSession();
+            Session session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(customer);
             transaction.commit();
@@ -47,7 +57,7 @@ public class CustomerDaoImpl implements CustomerDao{
         Transaction transaction = null;
 
         try{
-            Session session = HibernateUtil.getSessionFactory().openSession();
+            Session session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             Query<Customer> query = session.createQuery(hql);
             query.setParameter("customerN", customerName);
@@ -69,7 +79,7 @@ public class CustomerDaoImpl implements CustomerDao{
         boolean isSuccess = true;
 
         try{
-            Session session = HibernateUtil.getSessionFactory().openSession();
+            Session session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.saveOrUpdate(customer);
             transaction.commit();
@@ -88,7 +98,7 @@ public class CustomerDaoImpl implements CustomerDao{
     @Override
     public List<Customer> getCustomers(){
         String hql = "FROM Customer";
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+        try(Session session = sessionFactory.openSession()){
             Query<Customer> query= session.createQuery(hql);
             return query.list();
         }
@@ -100,7 +110,7 @@ public class CustomerDaoImpl implements CustomerDao{
 
         String hql = "FROM Customer as cus where lower(cus.name) = :name";
 
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+        try(Session session = sessionFactory.openSession()){
             Query<Customer> query = session.createQuery(hql);
             query.setParameter("name", customerName.toLowerCase());
 
@@ -114,7 +124,7 @@ public class CustomerDaoImpl implements CustomerDao{
 
         String hql = "FROM Customer as cus left join fetch cus.orders where lower(cus.name) = :name";
 
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+        try(Session session = sessionFactory.openSession()){
             Query query = session.createQuery(hql);
             query.setParameter("name", cusName.toLowerCase());
 

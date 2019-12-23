@@ -2,8 +2,8 @@ package com.ascending.repository;
 
 import com.ascending.model.Customer;
 import com.ascending.model.Order;
-import com.ascending.util.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
@@ -14,14 +14,24 @@ import java.util.List;
 
 @Repository
 public class OrderDaoImpl implements OrderDao{
-    @Autowired private Logger logger;
+    //@Autowired
+    private Logger logger;
+
+    //@Autowired
+    private SessionFactory sessionFactory;
+
+    @Autowired
+    public OrderDaoImpl(Logger logger, SessionFactory sessionFactory) {
+        this.logger = logger;
+        this.sessionFactory = sessionFactory;
+    }
 
     public boolean save(Order order){
         Transaction transaction = null;
         boolean isSuccess = true;
 
         try{
-            Session session = HibernateUtil.getSessionFactory().openSession();
+            Session session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(order);
             transaction.commit();
@@ -43,7 +53,7 @@ public class OrderDaoImpl implements OrderDao{
         Transaction transaction = null;
 
         try{
-            Session session = HibernateUtil.getSessionFactory().openSession();
+            Session session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             Query<Customer> query = session.createQuery(hql);
             query.setParameter("orderId", orderId);
@@ -64,7 +74,7 @@ public class OrderDaoImpl implements OrderDao{
         boolean isSuccess = true;
 
         try{
-            Session session = HibernateUtil.getSessionFactory().openSession();
+            Session session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.saveOrUpdate(order);
             transaction.commit();
@@ -83,7 +93,7 @@ public class OrderDaoImpl implements OrderDao{
 
     public List<Order> getOrders(){
         String hql = "FROM Order";
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+        try(Session session = sessionFactory.openSession()){
             Query<Order> query= session.createQuery(hql);
             return query.list();
         }
@@ -94,7 +104,7 @@ public class OrderDaoImpl implements OrderDao{
 
         String hql = "FROM Order as ord where ord.id = :id";
 
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+        try(Session session = sessionFactory.openSession()){
             Query<Order> query = session.createQuery(hql);
             query.setParameter("id", orderId);
             return query.uniqueResult();
@@ -103,7 +113,7 @@ public class OrderDaoImpl implements OrderDao{
 
     public List<Order> getOrderByCustomer(String cusName){
         String hql = "FROM Order as ord where ord.customer.name = :cusName";
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+        try(Session session = sessionFactory.openSession()){
             Query<Order> query = session.createQuery(hql);
             query.setParameter("cusName", cusName);
             return query.list();
@@ -112,7 +122,7 @@ public class OrderDaoImpl implements OrderDao{
 
     public List<Order> getOrderByProduct(int prodId){
         String hql = "FROM Order as ord where ord.product.id = :prodId";
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+        try(Session session = sessionFactory.openSession()){
             Query<Order> query = session.createQuery(hql);
             query.setParameter("prodId", prodId);
             return query.list();

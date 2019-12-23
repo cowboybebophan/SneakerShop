@@ -1,6 +1,7 @@
 package com.ascending.util;
 
 import com.github.fluent.hibernate.cfg.scanner.EntityScanner;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -40,7 +41,7 @@ public class HibernateUtil {
                 settings.put(Environment.URL, dbUrl);
                 settings.put(Environment.USER, dbUser);
                 settings.put(Environment.PASS, dbPassword);
-                settings.put(Environment.SHOW_SQL, "true");
+                settings.put(Environment.SHOW_SQL, "false");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
                 settings.put(Environment.HBM2DDL_AUTO, "validate");
                 configuration.setProperties(settings);
@@ -55,7 +56,6 @@ public class HibernateUtil {
                 e.printStackTrace();
             }
         }
-
         return sessionFactory;
     }
 }

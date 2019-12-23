@@ -4,6 +4,7 @@ import com.ascending.init.AppInitializer;
 import com.ascending.model.Customer;
 import com.ascending.model.Order;
 import com.ascending.model.Product;
+import com.ascending.repository.OrderDao;
 import com.ascending.service.OrderService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,14 +20,21 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes= AppInitializer.class)
 public class OrderServiceTest {
-    @Autowired private Logger logger;
-    @Autowired private OrderService orderService;
+    @Autowired
+    private Logger logger;
+
+    @Autowired
+    private OrderDao orderDao;
+
+    //@Autowired
+    private OrderService orderService;
+
     private Order order;
     private Customer customer;
     private Product product;
     
     @Before
-    public void init(){}
+    public void init(){ orderService = new OrderService(logger, orderDao); }
 
     @Test
     public void saveOrder() {

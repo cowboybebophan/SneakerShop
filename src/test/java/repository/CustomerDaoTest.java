@@ -3,21 +3,23 @@ package repository;
 import com.ascending.model.Customer;
 import com.ascending.repository.CustomerDao;
 import com.ascending.repository.CustomerDaoImpl;
+import org.hibernate.SessionFactory;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class CustomerDaoTest {
+    @Autowired private Logger logger;
+    @Autowired private SessionFactory sessionFactory;
     private static CustomerDao customerDao;
     private Customer customer;
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @BeforeClass
-    public static void init(){ customerDao = new CustomerDaoImpl(); }
+    @Before
+    public void init(){ customerDao = new CustomerDaoImpl(logger, sessionFactory); }
 
     @Test
     public void saveCustomer() {

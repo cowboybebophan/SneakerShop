@@ -3,6 +3,7 @@ package com.ascending.repository;
 import com.ascending.model.Product;
 import com.ascending.util.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 
@@ -14,13 +15,23 @@ import java.util.List;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
-    @Autowired private Logger logger;
+    //@Autowired
+    private Logger logger;
+    
+    //@Autowired
+    private SessionFactory sessionFactory;
+
+    @Autowired
+    public ProductDaoImpl(Logger logger, SessionFactory sessionFactory) {
+        this.logger = logger;
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public List<Product> getProducts(){
         String hql = "FROM Product";
         //Try resource, resource will close automatically
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             Query<Product> query = session.createQuery(hql);
             return query.list();
         }
@@ -31,7 +42,7 @@ public class ProductDaoImpl implements ProductDao {
         if (prodName == null) return null;
         String hql = "FROM Product as prod where lower(prod.name) = :name";
 
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             Query<Product> query = session.createQuery(hql);
             query.setParameter("name", prodName.toLowerCase());
 
@@ -43,7 +54,7 @@ public class ProductDaoImpl implements ProductDao {
     public Product getProductById(int prodId){
         String hql = "FROM Product as prod where prod.id = :id";
 
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             Query<Product> query = session.createQuery(hql);
             query.setParameter("id", prodId);
 
@@ -56,7 +67,7 @@ public class ProductDaoImpl implements ProductDao {
         if (prodName == null) return null;
         String hql = "FROM Product as prod left join fetch prod.orders where lower(prod.name) = :name";
 
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             Query<Product> query = session.createQuery(hql);
             query.setParameter("name", prodName.toLowerCase());
 
@@ -70,7 +81,7 @@ public class ProductDaoImpl implements ProductDao {
         boolean isSuccess = true;
 
         try{
-            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            Session session = sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
             session.save(product);
             transaction.commit();
@@ -93,7 +104,7 @@ public class ProductDaoImpl implements ProductDao {
         Transaction transaction = null;
 
         try{
-            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            Session session = sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
             Query<Product> query = session.createQuery(hql);
             query.setParameter("productN", productName);
@@ -116,7 +127,7 @@ public class ProductDaoImpl implements ProductDao {
         boolean isSuccess = true;
 
         try{
-            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            Session session = sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
             session.saveOrUpdate(product);
             transaction.commit();

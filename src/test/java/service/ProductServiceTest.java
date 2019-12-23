@@ -2,8 +2,10 @@ package service;
 
 import com.ascending.init.AppInitializer;
 import com.ascending.model.Product;
+import com.ascending.repository.ProductDao;
 import com.ascending.service.ProductService;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -17,10 +19,18 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes= AppInitializer.class)
 public class ProductServiceTest {
+    @Autowired
+    private Logger logger;
 
-    @Autowired private Logger logger;
-    @Autowired private ProductService productService;
+    @Autowired
+    private ProductDao productDao;
+
+    //@Autowired
+    private ProductService productService;
     private Product product;
+
+    @Before
+    public void init(){ productService = new ProductService(logger, productDao); }
     
     @Test
     public void getProducts() {

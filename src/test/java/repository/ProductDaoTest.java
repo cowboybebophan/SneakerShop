@@ -3,11 +3,12 @@ package repository;
 import com.ascending.model.Product;
 import com.ascending.repository.ProductDao;
 import com.ascending.repository.ProductDaoImpl;
+import org.hibernate.SessionFactory;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -15,11 +16,12 @@ import java.util.List;
 public class ProductDaoTest {
     private static ProductDao productDao;
     private Product product;
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired private Logger logger;
+    @Autowired private SessionFactory sessionFactory;
 
-    @BeforeClass
-    public static void init() {
-        productDao = new ProductDaoImpl();
+    @Before
+    public void init() {
+        productDao = new ProductDaoImpl(logger, sessionFactory);
     }
 
     @Test

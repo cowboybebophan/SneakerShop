@@ -5,11 +5,12 @@ import com.ascending.model.Order;
 import com.ascending.model.Product;
 import com.ascending.repository.OrderDao;
 import com.ascending.repository.OrderDaoImpl;
+import org.hibernate.SessionFactory;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -18,10 +19,11 @@ public class OrderDaoTest {
     private Order order;
     private Customer customer;
     private Product product;
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired private Logger logger;
+    @Autowired private SessionFactory sessionFactory;
 
-    @BeforeClass
-    public static void init(){ orderDao = new OrderDaoImpl(); }
+    @Before
+    public void init(){ orderDao = new OrderDaoImpl(logger, sessionFactory); }
 
     @Test
     public void saveOrder() {

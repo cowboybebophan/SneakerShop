@@ -14,7 +14,7 @@ import java.util.List;
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class CustomerService {
     //Field Injection
-    //@Autowired*
+    //@Autowired
     private Logger logger;
 
     //@Autowired

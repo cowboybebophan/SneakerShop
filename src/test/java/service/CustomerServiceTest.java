@@ -18,21 +18,30 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes= AppInitializer.class)
 public class CustomerServiceTest {
-    @Autowired private Logger logger;
-    @Autowired private CustomerService customerService;
+    @Autowired
+    private Logger logger;
+
+    @Autowired
+    private CustomerDao customerDao;
+
+    //@Autowired
+    private CustomerService customerService;
 
     @Before
     public void init(){
-        //You can not use new to creat the customerService object directly,
-        //as the DI is used to inject logger in CustomerService, otherwise,
-        //logger can not be injected, then it will throw NullPointException
-        //So you have to use @Autowired inject the object customerService.
+        /*
+            Demonstrate Constructor Injection is best way for DI, it ensure state safety of the object,
+            in case there is no DI used in high-level modules,
+            for example, here create the object DepartmentService by using new
+        */
+
+        customerService = new CustomerService(logger, customerDao);
     }
 
     @Test
     public void getCustomers(){
         List<Customer> customers = customerService.getCustomers();
-        int expectedNumOfCus = 4;
+        int expectedNumOfCus = 5;
 
         customers.forEach(customer -> logger.info(customer.toString()));
         Assert.assertEquals(expectedNumOfCus, customers.size());
