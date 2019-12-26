@@ -1,6 +1,7 @@
 package com.ascending.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -9,6 +10,10 @@ import java.util.Set;
 @Entity
 @Table(name = "product")
 public class Product {
+    public class User{};
+    public class Admin extends User{};
+
+    //Constructors
     public Product() {
 
     }
@@ -27,22 +32,28 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonView({Product.Admin.class, Order.Admin.class})
     private int id;
 
     @Column(name = "name")
+    @JsonView({Product.User.class, Order.User.class})
     private String name;
 
     @Column(name = "description")
+    @JsonView({Product.User.class, Order.Admin.class})
     private String description;
 
     @Column(name = "price")
+    @JsonView({Product.User.class, Order.User.class})
     private BigDecimal price;
 
     @Column(name = "stock")
+    @JsonView({Product.Admin.class, Order.Admin.class})
     private int stock;
 
     @JsonIgnore
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonView({Product.User.class})
     private Set<Order> orders;
 
     public int getId() {

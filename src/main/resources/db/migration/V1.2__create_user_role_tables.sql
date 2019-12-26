@@ -13,6 +13,8 @@ CREATE TABLE users (
     id              SERIAL NOT NULL,
     name            VARCHAR(30) not null unique,
     password        VARCHAR(64),
+    first_name      VARCHAR(30),
+    last_name       VARCHAR(30),
     email           VARCHAR(50) not null unique
 );
 

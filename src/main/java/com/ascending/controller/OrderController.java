@@ -1,9 +1,11 @@
 package com.ascending.controller;
 
 import com.ascending.model.Order;
+import com.ascending.model.Product;
 import com.ascending.service.CustomerService;
 import com.ascending.service.OrderService;
 import com.ascending.service.ProductService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -32,12 +34,14 @@ public class OrderController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @JsonView({Order.User.class})
     public List<Order> getOrders(){
         List<Order> orders = orderService.getOrders();
         return orders;
     }
 
-    @RequestMapping(value = "/id/{orderId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/{orderId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @JsonView({Order.Admin.class})
     public Order getOrderById(@PathVariable int orderId){
         Order order = orderService.getOrderById(orderId);
         return order;

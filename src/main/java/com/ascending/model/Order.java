@@ -1,6 +1,7 @@
 package com.ascending.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -8,6 +9,9 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "sneaker_order")
 public class Order {
+    public class User{};
+    public class Admin extends User{};
+
     public Order() {}
 
     public Order(Customer customer, Product product, String payment) {
@@ -19,21 +23,25 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonView({Order.Admin.class})
     private int id;
 
     @Column(name = "payment")
+    @JsonView({Order.User.class})
     private String payment;
 
     @Column(name = "order_date")
+    @JsonView({Order.User.class})
     private LocalDate order_date = LocalDate.now();
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "customer_id")
+    @JsonView({Order.User.class})
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @JsonView({Order.User.class})
     private Product product;
 
     public int getId() {

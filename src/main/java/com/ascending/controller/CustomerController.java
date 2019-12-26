@@ -2,6 +2,7 @@ package com.ascending.controller;
 
 import com.ascending.model.Customer;
 import com.ascending.service.CustomerService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -24,11 +25,13 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @JsonView({Customer.User.class})
     public List<Customer> getCustomers(){
         return customerService.getCustomers();
     }
 
     @RequestMapping(value = "/{cusName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @JsonView({Customer.Admin.class})
     public Customer getCustomersByName(@PathVariable String cusName){
         Customer customer = customerService.getCustomerByName(cusName);
         return customer;

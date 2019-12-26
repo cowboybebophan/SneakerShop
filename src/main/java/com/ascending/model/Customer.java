@@ -1,6 +1,8 @@
 package com.ascending.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -8,6 +10,8 @@ import java.util.Set;
 @Entity
 @Table(name = "customer")
 public class Customer {
+    public class User{};
+    public class Admin extends User{};
 
     public Customer() {
 
@@ -27,22 +31,29 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonView({Customer.Admin.class, Order.Admin.class})
     private int id;
 
     @Column(name = "name")
+    @JsonView({Customer.User.class, Order.User.class})
     private String name;
 
     @Column(name = "email")
+    @JsonView({Customer.User.class, Order.Admin.class})
     private String email;
 
     @Column(name = "password")
+    @JsonView({Customer.Admin.class, Order.Admin.class})
     private String password;
 
     @Column(name = "address")
+    @JsonView({Customer.User.class, Order.Admin.class})
     private String address;
 
+    @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonView({Customer.Admin.class})
     private Set<Order> orders;
 
     public int getId() {
