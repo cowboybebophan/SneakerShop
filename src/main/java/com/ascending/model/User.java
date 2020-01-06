@@ -1,5 +1,7 @@
 package com.ascending.model;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -15,10 +17,10 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = 'first_name')
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = 'last_name')
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "password")
@@ -71,7 +73,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = DigestUtils.md5Hex(password.trim());
     }
 
     public String getEmail() {

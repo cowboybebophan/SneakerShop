@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserDapImpl implements UserDao{
+public class UserDaoImpl implements UserDao{
     private Logger logger;
     private SessionFactory sessionFactory;
 
     @Autowired
-    public UserDapImpl(Logger logger, SessionFactory sessionFactory) {
+    public UserDaoImpl(Logger logger, SessionFactory sessionFactory) {
         this.logger = logger;
         this.sessionFactory = sessionFactory;
     }
