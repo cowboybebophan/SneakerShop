@@ -31,6 +31,7 @@
   </parent>
 
   <dependencies>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
@@ -43,13 +44,6 @@
       <version>2.1.6.RELEASE</version>
     </dependency>
 
-<!--    <dependency>-->
-<!--      <groupId>junit</groupId>-->
-<!--      <artifactId>junit</artifactId>-->
-<!--      <version>4.12</version>-->
-<!--      <scope>test</scope>-->
-<!--    </dependency>-->
-
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
@@ -61,19 +55,6 @@
       <artifactId>commons-codec</artifactId>
       <version>1.12</version>
     </dependency>
-
-<!--    <dependency>-->
-<!--      <groupId>org.slf4j</groupId>-->
-<!--      <artifactId>slf4j-simple</artifactId>-->
-<!--      <version>1.7.26</version>-->
-<!--    </dependency>-->
-
-<!--    <dependency>-->
-<!--        <groupId>org.jetbrains</groupId>-->
-<!--        <artifactId>annotations</artifactId>-->
-<!--        <version>RELEASE</version>-->
-<!--        <scope>compile</scope>-->
-<!--    </dependency>-->
 
     <dependency>
       <groupId>org.hibernate</groupId>
@@ -93,18 +74,11 @@
       <version>0.9.1</version>
     </dependency>
 
-<!--
     <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.9.10.1</version>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk</artifactId>
+      <version>1.11.592</version>
     </dependency>
-
-    <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-xml</artifactId>
-    </dependency>
--->
 
   </dependencies>
 
