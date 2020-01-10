@@ -9,6 +9,7 @@ A back-end web development project.
 * [Environment Setup](#environment-setup)    
   * [Maven](#maven)    
   * [Docker](#docker)     
+  * [Redis](#redis)
   * [Database Connection](#database-connection)  
   * [Database Migration](#database-migration)     
 
@@ -65,6 +66,23 @@ Restart a exited container:
 Note: If port 5432 is already in use, kill all postgres processes by using:
     
     sudo pkill -u postgres
+
+## Redis
+>Use `Redis` to achieve caching for better controller performance.
+>
+Pull image from redis:
+
+    docker pull redis
+    
+Create container: 
+
+    docker run -p 6379:6379 --name spring-redis -d redis
+    
+Redis commandline:
+
+    redis-cli keys *
+    redis-cli FLUSHDB
+    redis-cli info stats | grep 'keyspace_*'
 
 ## Database Connection
 >Use `VM Option` to create database connection.
