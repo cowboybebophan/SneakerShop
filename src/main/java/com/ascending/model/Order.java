@@ -20,10 +20,10 @@ public class Order {
         this.payment = payment;
     }
 
-/*    @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @JsonView({Order.Admin.class})*/
+    @JsonView({Order.Admin.class})
     private int id;
 
     @Column(name = "payment")
