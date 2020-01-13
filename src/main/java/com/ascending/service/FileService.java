@@ -10,3 +10,4 @@ public interface FileService {
     void createBucket(String bucketName);
     public boolean saveFile(MultipartFile multipartFile, String filePath);
 }
+
