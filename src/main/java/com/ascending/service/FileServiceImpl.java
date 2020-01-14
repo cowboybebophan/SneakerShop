@@ -52,7 +52,6 @@ public class FileServiceImpl implements FileService{
             logger.error(e.getMessage());
             return null;
         }
-
         return getFileUrl(bucketName, file.getOriginalFilename());
     }
 

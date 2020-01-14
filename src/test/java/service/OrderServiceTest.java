@@ -86,7 +86,7 @@ public class OrderServiceTest {
     @Test
     public void getOrders(){
         List<Order> orders = orderService.getOrders();
-        int expectedNumOfOrders = 7;
+        int expectedNumOfOrders = 8;
 
         for (Order order : orders){
             logger.debug(order.toString());

@@ -1,4 +1,4 @@
-package com.ascending.config;
+package com.ascending.bean;
 
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.regions.Regions;

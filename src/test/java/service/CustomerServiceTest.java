@@ -34,14 +34,13 @@ public class CustomerServiceTest {
             in case there is no DI used in high-level modules,
             for example, here create the object DepartmentService by using new
         */
-
         customerService = new CustomerService(logger, customerDao);
     }
 
     @Test
     public void getCustomers(){
         List<Customer> customers = customerService.getCustomers();
-        int expectedNumOfCus = 5;
+        int expectedNumOfCus = 9;
 
         customers.forEach(customer -> logger.info(customer.toString()));
         Assert.assertEquals(expectedNumOfCus, customers.size());
