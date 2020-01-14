@@ -29,25 +29,25 @@ public class CustomerDaoImpl implements CustomerDao{
     }
 
     @Override
-    public boolean save(Customer customer){
+    public Customer save(Customer customer){
         Transaction transaction = null;
-        boolean isSuccess = true;
+        Customer result = null;
 
         try{
             Session session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.save(customer);
+            session.saveOrUpdate(customer);
+            result =customer;
             transaction.commit();
         }
         catch (Exception e){
-            isSuccess = false;
             if (transaction != null) transaction.rollback();
             logger.error(e.getMessage());
         }
 
-        if (isSuccess) logger.debug(String.format("The customer %s was inserted into the table.", customer.toString()));
+//        if (isSuccess) logger.debug(String.format("The customer %s was inserted into the table.", customer.toString()));
 
-        return isSuccess;
+        return result;
     }
 
     @Override

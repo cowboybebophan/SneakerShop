@@ -28,5 +28,4 @@ public class AppBaseException extends RuntimeException{
         map.put("message", message);
         return map;
     }
-
 }

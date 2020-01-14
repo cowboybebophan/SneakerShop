@@ -27,7 +27,7 @@ public class CustomerService {
         this.customerDao = customerDao;
     }
 
-    public boolean save(Customer customer){
+    public Customer save(Customer customer){
         return customerDao.save(customer);
     }
 

@@ -1,5 +1,6 @@
 package repository;
 
+import com.ascending.init.AppInitializer;
 import com.ascending.model.Customer;
 import com.ascending.repository.CustomerDao;
 import com.ascending.repository.CustomerDaoImpl;
@@ -7,19 +8,25 @@ import org.hibernate.SessionFactory;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes= AppInitializer.class)
 public class CustomerDaoTest {
     @Autowired private Logger logger;
     @Autowired private SessionFactory sessionFactory;
-    private static CustomerDao customerDao;
+    @Autowired
+    private  CustomerDao customerDao;
     private Customer customer;
 
     @Before
-    public void init(){ customerDao = new CustomerDaoImpl(logger, sessionFactory); }
+    public void init(){}
 
     @Test
     public void saveCustomer() {
@@ -30,9 +37,10 @@ public class CustomerDaoTest {
         customer.setPassword("ryo123");
         customer.setAddress("Falls Church");
 
-        boolean isSuccess = customerDao.save(customer);
+        Customer result = customerDao.save(customer);
 
-        Assert.assertEquals(isSuccess, true);
+        Assert.assertNotNull(result);
+        Assert.assertNotNull(result.getId());
 
         customerDao.delete(customer.getName());
     }

@@ -78,6 +78,10 @@ Create container:
 
     docker run -p 6379:6379 --name spring-redis -d redis
     
+Enter interactive terminal:
+
+    docker exec -it spring-redis /bin/bash 
+    
 Redis commandline:
 
     redis-cli keys *

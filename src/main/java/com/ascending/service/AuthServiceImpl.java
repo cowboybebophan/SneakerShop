@@ -17,6 +17,7 @@ import java.util.Map;
 @Service
 public class AuthServiceImpl implements AuthService{
     private Logger logger;
+    @Autowired
     private UserService userService;
     private static String AUTH_URI = "/auth";
 

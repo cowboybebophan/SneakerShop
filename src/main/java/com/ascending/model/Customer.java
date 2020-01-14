@@ -5,11 +5,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer implements Serializable {
     public class User{};
     public class Admin extends User{};
 

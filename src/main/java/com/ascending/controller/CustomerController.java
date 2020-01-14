@@ -5,6 +5,8 @@ import com.ascending.service.CustomerService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +32,7 @@ public class CustomerController {
         return customerService.getCustomers();
     }
 
+    @Cacheable(value = "customers")
     @RequestMapping(value = "/{cusName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     @JsonView({Customer.Admin.class})
     public Customer getCustomersByName(@PathVariable String cusName){
@@ -43,15 +46,12 @@ public class CustomerController {
         return customers;
     }
 
+    @CachePut(value = "customers", key = "#customer.name", unless = "#customer.name == null")
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public String createCustomer(@RequestBody Customer customer){
+    public Customer createCustomer(@RequestBody Customer customer){
         logger.debug("Customer:" + customer.toString());
-        String msg = "A new customer was created successfully!";
-        boolean isSuccess = customerService.save(customer);
-
-        if (!isSuccess) msg = "The customer was not created.";
-
-        return msg;
+        Customer result = customerService.save(customer);
+        return result;
     }
 
     @RequestMapping(value = "/{cusName}", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
