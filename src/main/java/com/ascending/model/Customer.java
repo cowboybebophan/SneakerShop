@@ -6,19 +6,17 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "customer")
-public class Customer implements Serializable {
-    public class User{};
-    public class Admin extends User{};
-
+public class Customer extends Model {
     public Customer() {
 
     }
 
-    public Customer(int id) {
+    public Customer(int id){
         this.id = id;
     }
 
@@ -29,41 +27,22 @@ public class Customer implements Serializable {
         this.address = address;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @JsonView({Customer.Admin.class, Order.Admin.class})
-    private int id;
-
     @Column(name = "name")
-    @JsonView({Customer.User.class, Order.User.class})
     private String name;
 
     @Column(name = "email")
-    @JsonView({Customer.User.class, Order.Admin.class})
     private String email;
 
     @Column(name = "password")
-    @JsonView({Customer.Admin.class, Order.Admin.class})
     private String password;
 
     @Column(name = "address")
-    @JsonView({Customer.User.class, Order.Admin.class})
     private String address;
 
     @JsonIgnore
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JsonView({Customer.Admin.class})
     private Set<Order> orders;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -115,13 +94,22 @@ public class Customer implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Customer that = (Customer) o;
+        return id == that.id &&
+                name.equals(that.name) &&
+                email.equals(that.email) &&
+                password.equals(that.password) &&
+                address.equals(that.address);
+                //&&
+                //ders.equals(that.orders);
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(id, name, email, password, address);
     }
 }

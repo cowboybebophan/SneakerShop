@@ -27,14 +27,12 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    @JsonView({Customer.User.class})
     public List<Customer> getCustomers(){
         return customerService.getCustomers();
     }
 
     @Cacheable(value = "customers")
     @RequestMapping(value = "/{cusName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    @JsonView({Customer.Admin.class})
     public Customer getCustomersByName(@PathVariable String cusName){
         Customer customer = customerService.getCustomerByName(cusName);
         return customer;

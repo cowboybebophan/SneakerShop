@@ -25,14 +25,12 @@ public class ProductController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    @JsonView(Product.User.class)
     public List<Product> getProducts(){
         List<Product> products = productService.getProducts();
         return products;
     }
 
     @RequestMapping(value = "/{prodName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    @JsonView(Product.Admin.class)
     public Product getProductByName(@PathVariable String prodName){
         Product product = productService.getProductByName(prodName);
         return product;

@@ -69,10 +69,10 @@ public class FileServiceTest {
         amazonS3.deleteBucket(bucketName);
     }
 
-    @Test
+    /*@Test
     public void saveFile() throws IOException, FileNotFoundException {
         boolean isSuccess = fileService.saveFile(multipartFile, path);
         Assert.assertTrue(isSuccess);
-    }
+    }*/
 
 }

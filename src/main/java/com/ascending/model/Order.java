@@ -5,13 +5,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "sneaker_order")
-public class Order {
-    public class User{};
-    public class Admin extends User{};
-
+public class Order extends Model{
     public Order() {}
 
     public Order(Customer customer, Product product, String payment) {
@@ -20,37 +18,19 @@ public class Order {
         this.payment = payment;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @JsonView({Order.Admin.class})
-    private int id;
-
     @Column(name = "payment")
-    @JsonView({Order.User.class})
     private String payment;
 
     @Column(name = "order_date")
-    @JsonView({Order.User.class})
     private LocalDate order_date = LocalDate.now();
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    @JsonView({Order.User.class})
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    @JsonView({Order.User.class})
     private Product product;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public LocalDate getOrder_date() {
         return this.order_date;
@@ -85,13 +65,20 @@ public class Order {
     }
 
     @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", customer_id=" + customer.getId() +
-                ", product_id=" + product.getId() +
-                ", payment='" + payment + '\'' +
-                ", order_date='" + order_date + '\'' +
-                '}';
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order that = (Order) o;
+        return id == that.id &&
+                payment.equals(that.payment) &&
+                order_date.equals(that.order_date) &&
+                customer.equals(that.customer) &&
+                product.equals(that.product);
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(id, payment, order_date, customer, product);
     }
 }

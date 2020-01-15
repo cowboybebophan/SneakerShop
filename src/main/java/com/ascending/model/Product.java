@@ -5,15 +5,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "product")
-public class Product {
-    public class User{};
-    public class Admin extends User{};
-
-    //Constructors
+public class Product extends Model{
     public Product() {
 
     }
@@ -29,40 +26,21 @@ public class Product {
         this.stock = stock;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @JsonView({Product.Admin.class, Order.Admin.class})
-    private int id;
-
     @Column(name = "name")
-    @JsonView({Product.User.class, Order.User.class})
     private String name;
 
     @Column(name = "description")
-    @JsonView({Product.User.class, Order.Admin.class})
     private String description;
 
     @Column(name = "price")
-    @JsonView({Product.User.class, Order.User.class})
     private BigDecimal price;
 
     @Column(name = "stock")
-    @JsonView({Product.Admin.class, Order.Admin.class})
     private int stock;
 
     @JsonIgnore
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JsonView({Product.User.class})
     private Set<Order> orders;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -114,13 +92,20 @@ public class Product {
     }
 
     @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", stock=" + stock +
-                '}';
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product that = (Product) o;
+        return id == that.id &&
+                name.equals(that.name) &&
+                description.equals(that.description) &&
+                price == that.price &&
+                stock == that.stock;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(id, name, description, price, stock);
     }
 }

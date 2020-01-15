@@ -34,14 +34,12 @@ public class OrderController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    @JsonView({Order.User.class})
     public List<Order> getOrders(){
         List<Order> orders = orderService.getOrders();
         return orders;
     }
 
     @RequestMapping(value = "/{orderId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    @JsonView({Order.Admin.class})
     public Order getOrderById(@PathVariable int orderId){
         Order order = orderService.getOrderById(orderId);
         return order;
