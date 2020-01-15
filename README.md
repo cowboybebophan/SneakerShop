@@ -8,7 +8,8 @@ A back-end web development project.
   * [Tech Stack](#tech-stack)       
 * [Environment Setup](#environment-setup)    
   * [Maven](#maven)    
-  * [Docker](#docker)     
+  * [Docker](#docker)  
+  * [Postgres](#postgres)   
   * [Redis](#redis)
   * [Database Connection](#database-connection)  
   * [Database Migration](#database-migration)     
@@ -43,29 +44,38 @@ It manages a project's **dependencies** and helps with **build automation**.
 All the dependencies and plugins are in the `pom.xml` file.     
 
 ## Docker
->Use `Docker` to create Postgres container.
+>Use `Docker` to create containers.
 >
 List all Docker images and containers:
 
     docker images
     docker ps -a
 
-Pull image from postgres: 
+Pull images: 
     
-    docker pull postgres
-    
-Create container: 
-    
-    docker run --name <container_name> -e POSTGRES_DB=<server_name> 
-    -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres
+    docker pull <image_name>
     
 Restart a exited container:
     
     docker start <container_name>
 
+
+## Postgres
+>Use `Postgres` as database.
+>
+Pull image from postgres:
+
+    docker pull postgres
+
+Create container: 
+    
+    docker run --name <container_name> -e POSTGRES_DB=<server_name> 
+    -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres
+    
 Note: If port 5432 is already in use, kill all postgres processes by using:
     
     sudo pkill -u postgres
+
 
 ## Redis
 >Use `Redis` to achieve caching for better controller performance.
