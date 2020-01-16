@@ -80,7 +80,7 @@ public class FileServiceImpl implements FileService{
             Path path = Paths.get(filePath, multipartFile.getOriginalFilename());
             multipartFile.transferTo(path);
             isSuccess = true;
-            logger.info(String.format("The file %s is saved in the foldr %s", multipartFile.getOriginalFilename(), filePath));
+            logger.info(String.format("The file %s is saved in the folder %s", multipartFile.getOriginalFilename(), filePath));
         }
         catch(Exception e) {
             logger.error(e.getMessage());

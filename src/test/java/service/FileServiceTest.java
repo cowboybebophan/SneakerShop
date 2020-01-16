@@ -47,7 +47,7 @@ public class FileServiceTest {
 
     @After
     public void tearDown(){
-        logger.info(">>>>>>>> End testing...");
+        logger.info(">>>>>> End testing...");
     }
 
     @Test
