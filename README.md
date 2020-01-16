@@ -25,11 +25,11 @@ How do you choose the perfect pair?
 
 ## Tech Stack
 
-**Database** : `PostgresSQL`  
+**Database** : `PostgreSQL`  
 **Testing** : `JUnit` `Mockito`  
 **Frameworks** : `Spring-boot` `Hibernate`   
 **Cloud Deployment** : `AWS S3` `AWS SQS`   
-**Tools** : `Git` `Docker` `Maven` `Flyway` `pgAdmin` `Postman`  
+**Tools** : `Git` `Docker` `Maven` `Flyway` `pgAdmin` `Postman` `Redis`
 
 # Environment Setup
 These instructions will help you setup the environment that the project is based on.    
