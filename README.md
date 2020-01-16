@@ -55,10 +55,9 @@ Pull images:
     
     docker pull <image_name>
     
-Restart a exited container:
+Restart an exited container:
     
     docker start <container_name>
-
 
 ## Postgres
 >Use `Postgres` as database.
