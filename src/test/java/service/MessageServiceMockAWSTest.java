@@ -43,7 +43,7 @@ public class MessageServiceMockAWSTest {
     private List<Message> messages;
 
     @Before
-    public void setUp() {
+    public void setUp(){
         logger.info(AppConstants.MSG_PREFIX + "Start testing...");
         messages = new ArrayList();
         messages.add(new Message());
@@ -56,7 +56,7 @@ public class MessageServiceMockAWSTest {
     }
 
     @After
-    public void tearDown() {logger.info(AppConstants.MSG_PREFIX + "End Testing......");}
+    public void tearDown(){logger.info(AppConstants.MSG_PREFIX + "End Testing......");}
 
     @Test
     public void getQueueUrl(){
