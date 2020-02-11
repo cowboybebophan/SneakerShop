@@ -74,5 +74,4 @@ public class FileServiceTest {
         boolean isSuccess = fileService.saveFile(multipartFile, path);
         Assert.assertTrue(isSuccess);
     }*/
-
 }

@@ -19,7 +19,7 @@ public class CustomerDaoTest {
     @Test
     public void getCustomersTest(){
         List<Customer> customers = customerDao.getCustomers();
-        int exceptionNumOfCus = 5;
+        int exceptionNumOfCus = 8;
 
         for (Customer customer : customers){
             System.out.println(customer);

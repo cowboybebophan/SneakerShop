@@ -15,9 +15,9 @@ public class ProductDao {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     // Step 1: Database information
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/sneaker_db";
-    private static final String USER = "admin";
-    private static final String PASS = "1234";
+    private static final String DB_URL = System.getProperty("database.url");
+    private static final String USER = System.getProperty("database.user");
+    private static final String PASS = System.getProperty("database.password");
 
     public List<Product> getProducts(){
         logger.info("Enter the method getProducts...");

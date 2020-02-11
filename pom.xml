@@ -12,7 +12,7 @@
   <name>SneakerShop</name>
   <url>http://www.ascendingdc.com</url>
 
-  <properties>
+<!--  <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -21,7 +21,7 @@
     <database.url>jdbc:postgresql://localhost:5432/sneaker_db</database.url>
     <database.user>admin</database.user>
     <database.password>1234</database.password>
-  </properties>
+  </properties>-->
 
   <parent>
     <groupId>org.springframework.boot</groupId>

@@ -75,7 +75,6 @@ Note: If port 5432 is already in use, kill all postgres processes by using:
     
     sudo pkill -u postgres
 
-
 ## Redis
 >Use `Redis` to achieve caching for better controller performance.
 >
