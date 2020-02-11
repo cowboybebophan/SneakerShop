@@ -24,7 +24,7 @@ public class OrderDaoTest {
     @Test
     public void getOrdersTest(){
         List<Order> orders = orderDao.getOrders();
-        int expectationNumOfOrders = 7;
+        int expectationNumOfOrders = 8;
 
         for (Order order : orders){
             logger.debug(order.toString());
@@ -53,10 +53,10 @@ public class OrderDaoTest {
     public void deleteOrderTest(){
         Customer customer = new Customer(4);
         Product product = new Product(4);
-        order = new Order(customer, product, "PayPal");
+        order = new Order(customer, product, "Test");
         orderDao.insertOrder(order);
 
-        String condition = "customer_id = 4 AND product_id = 4 AND payment = 'PayPal'";
+        String condition = "customer_id = 4 AND product_id = 4 AND payment = 'Test'";
 
         int rowsDeleted = orderDao.deleteOrder(condition);
         int deletedNumOfRows = 1;

@@ -40,7 +40,7 @@ public class CustomerServiceTest {
     @Test
     public void getCustomers(){
         List<Customer> customers = customerService.getCustomers();
-        int expectedNumOfCus = 8;
+        int expectedNumOfCus = 4;
 
         customers.forEach(customer -> logger.info(customer.toString()));
         Assert.assertEquals(expectedNumOfCus, customers.size());
