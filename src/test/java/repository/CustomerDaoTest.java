@@ -21,12 +21,11 @@ import java.util.List;
 public class CustomerDaoTest {
     @Autowired private Logger logger;
     @Autowired private SessionFactory sessionFactory;
-    @Autowired
-    private  CustomerDao customerDao;
+    private CustomerDao customerDao;
     private Customer customer;
 
     @Before
-    public void init(){}
+    public void init(){ customerDao = new CustomerDaoImpl(logger, sessionFactory); }
 
     @Test
     public void saveCustomer() {

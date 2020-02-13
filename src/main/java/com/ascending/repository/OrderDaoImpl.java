@@ -26,6 +26,7 @@ public class OrderDaoImpl implements OrderDao{
         this.sessionFactory = sessionFactory;
     }
 
+    @Override
     public boolean save(Order order){
         Transaction transaction = null;
         boolean isSuccess = true;
@@ -47,6 +48,7 @@ public class OrderDaoImpl implements OrderDao{
         return isSuccess;
     }
 
+    @Override
     public boolean delete(int orderId){
         String hql = "DELETE Order where id = :orderId";
         int deletedCount = 0;
@@ -69,6 +71,7 @@ public class OrderDaoImpl implements OrderDao{
         return deletedCount >= 1 ? true : false;
     }
 
+    @Override
     public boolean update(Order order){
         Transaction transaction = null;
         boolean isSuccess = true;
@@ -91,6 +94,7 @@ public class OrderDaoImpl implements OrderDao{
 
     }
 
+    @Override
     public List<Order> getOrders(){
         String hql = "FROM Order";
         try(Session session = sessionFactory.openSession()){
@@ -99,6 +103,7 @@ public class OrderDaoImpl implements OrderDao{
         }
     }
 
+    @Override
     public Order getOrderById(int orderId){
         if (orderId <= 0) return null;
 
@@ -111,6 +116,7 @@ public class OrderDaoImpl implements OrderDao{
         }
     }
 
+    @Override
     public List<Order> getOrderByCustomer(String cusName){
         String hql = "FROM Order as ord where ord.customer.name = :cusName";
         try(Session session = sessionFactory.openSession()){
@@ -120,6 +126,7 @@ public class OrderDaoImpl implements OrderDao{
         }
     }
 
+    @Override
     public List<Order> getOrderByProduct(int prodId){
         String hql = "FROM Order as ord where ord.product.id = :prodId";
         try(Session session = sessionFactory.openSession()){

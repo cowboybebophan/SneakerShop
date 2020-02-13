@@ -1,5 +1,6 @@
 package repository;
 
+import com.ascending.init.AppInitializer;
 import com.ascending.model.Customer;
 import com.ascending.model.Order;
 import com.ascending.model.Product;
@@ -9,18 +10,23 @@ import org.hibernate.SessionFactory;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes= AppInitializer.class)
 public class OrderDaoTest {
+    @Autowired private Logger logger;
+    @Autowired private SessionFactory sessionFactory;
     private static OrderDao orderDao;
     private Order order;
     private Customer customer;
     private Product product;
-    @Autowired private Logger logger;
-    @Autowired private SessionFactory sessionFactory;
 
     @Before
     public void init(){ orderDao = new OrderDaoImpl(logger, sessionFactory); }

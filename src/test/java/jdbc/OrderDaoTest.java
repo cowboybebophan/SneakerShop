@@ -37,13 +37,13 @@ public class OrderDaoTest {
     public void insertOrderTest(){
         Customer customer = new Customer(3);
         Product product = new Product(3);
-        order = new Order(customer, product, "BoA");
+        order = new Order(customer, product, "Insert_test");
 
         int rowsInserted = orderDao.insertOrder(order);
         int insertedNumOfRows = 1;
 
         //Reset the table by deleting the inserted record;
-        String condition = "customer_id = 3 AND product_id = 3 AND payment = 'BoA'";
+        String condition = "customer_id = 3 AND product_id = 3 AND payment = 'Insert_test'";
         orderDao.deleteOrder(condition);
 
         Assert.assertEquals(insertedNumOfRows, rowsInserted);
@@ -53,10 +53,10 @@ public class OrderDaoTest {
     public void deleteOrderTest(){
         Customer customer = new Customer(4);
         Product product = new Product(4);
-        order = new Order(customer, product, "Test");
+        order = new Order(customer, product, "Delete_test");
         orderDao.insertOrder(order);
 
-        String condition = "customer_id = 4 AND product_id = 4 AND payment = 'Test'";
+        String condition = "customer_id = 4 AND product_id = 4 AND payment = 'Delete_test'";
 
         int rowsDeleted = orderDao.deleteOrder(condition);
         int deletedNumOfRows = 1;
@@ -66,7 +66,7 @@ public class OrderDaoTest {
 
     @Test
     public void updateOrderTest(){
-        String statement = "payment = 'Test'";
+        String statement = "payment = 'Update_test'";
         String condition = "customer_id = 3 AND product_id = 2 AND payment = 'Credit Card'";
         int rowsUpdated = orderDao.updateOrder(statement, condition);
         int updatedNumOfRows = 1;
@@ -75,7 +75,7 @@ public class OrderDaoTest {
 
         // Update back
         statement = "payment = 'Credit Card'";
-        condition = "customer_id = 3 AND product_id = 2 AND payment = 'Test'";
+        condition = "customer_id = 3 AND product_id = 2 AND payment = 'Update_test'";
 
         orderDao.updateOrder(statement, condition);
     }
