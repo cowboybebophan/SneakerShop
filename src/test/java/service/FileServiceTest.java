@@ -39,7 +39,10 @@ public class FileServiceTest {
     public void setUp() throws IOException {
         logger.info(">>>>>>>> Start testing...");
 
-        File file = new File("/Users/jasper/IdeaProjects/SneakerShop/README.md");
+        String resourceName = "AWSTestFile";
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource(resourceName).getFile());
+        
         FileInputStream input = new FileInputStream(file);
         multipartFile = new MockMultipartFile("file", file.getName(), "text/plain", input);
         path = System.getProperty("user.dir") + File.separator + "temp";
