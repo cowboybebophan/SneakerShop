@@ -50,7 +50,7 @@ It manages a project's **dependencies** and helps with **build automation**.
 All the dependencies and plugins are in the `pom.xml` file.     
 
 ## Docker
->Use `Docker` to create containers.
+>`Docker` uses OS-level virtualization to deliver software in packages called container.
 >
 List all Docker images and containers:
 
@@ -66,30 +66,20 @@ Restart an exited container:
     docker start <container_name>
 
 ## Postgres
->Use `Postgres` as database.
+>Use `PostgreSQL` container as database server.
 >
-Pull image from postgres:
+Pull image from postgres and run container:
 
     docker pull postgres
-
-Create container: 
-    
     docker run --name <container_name> -e POSTGRES_DB=<server_name> 
     -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres
-    
-Note: If port 5432 is already in use, kill all postgres processes by using:
-    
-    sudo pkill -u postgres
 
 ## Redis
->Use `Redis` to achieve caching for better controller performance.
+>Use `Redis` to enable caching for better controller performance.
 >
-Pull image from redis:
+Pull image from redis and run container:
 
     docker pull redis
-    
-Create container: 
-
     docker run -p 6379:6379 --name spring-redis -d redis
     
 Enter interactive terminal:
@@ -103,27 +93,20 @@ Redis commandline:
     redis-cli info stats | grep 'keyspace_*'
 
 ## Database Connection
->Use `VM Option` to create database connection.
+>Use `JVM Option` to create database connection.
 >
-    -Ddatabase.driver=org.postgresql.Driver
-    -Ddatabase.url=jdbc:postgresql://${database_host}:${port}/${database_name}
     -Ddatabase.user=${user_name}
     -Ddatabase.password=${password}
+    -Ddatabase.driver=org.postgresql.Driver
     -Ddatabase.dialect=org.hibernate.dialect.PostgreSQL9Dialect
+    -Ddatabase.url=jdbc:postgresql://${database_host}:${port}/${database_name}
 
 ## Database Migration
->Use `Flyway` as migration tool.
+>Use `Flyway` as a data migration tool.
 >
-
 `Flyway` is a `Maven` plugin, it makes database migrations easy.     
 
-Compile your source first:  
-
-    mvn compile
-    
-Database migration: 
-
-    mvn flyway:migrate
+    mvn clean compile flyway:migrate -Ddatabase.url=...
     
 # CI/CD
 
@@ -139,7 +122,7 @@ You should have completed the following stages before you work with DevOps engin
 
 Make sure you have uploaded the latest version of your source code in a public GitHub repository.   
 
-**Don't include any credential or database information in your source code.**
+***Don't include any credential or database information in your source code.**
 
 ## Unit Test
 >Use `Docker` to pull `Maven` image and run an interactive container.
@@ -151,7 +134,7 @@ Make sure you have uploaded the latest version of your source code in a public G
 >
     git clone <repository_url>
     
->Switch to the project folder, use `Flyway` to migrate data.
+>Switch to the project folder, then use `Flyway` to migrate data.
 >
 Notice: we are working in a maven container so the database connection is no longer through localhost:5432.
 The database_host should be the internal IP address for the `postgreSQL` server container. 
