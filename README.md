@@ -136,11 +136,13 @@ Make sure you have uploaded the latest version of your source code in a public G
     
 >Switch to the project folder, then use `Flyway` to migrate data.
 >
-Notice: we are working in a maven container so the database connection is no longer through localhost:5432.
-The database_host should be the internal IP address for the `postgreSQL` server container. 
-
     mvn clean compile flyway:migrate -Ddatabase.url=jdbc:postgresql://${database_host}:5432/${database_name} 
     -Ddatabase.user=${user_name} -Ddatabase.password=${password}
+    
+Notice: we are working in a maven container so the database connection is no longer through localhost:5432.
+The database_host should be the internal IP address for the `postgreSQL` server container. Find the internal IP address of the container by using:
+    
+    docker inspect ${container_id} | grep "IPAddress"
     
 >Run unit tests in the container.
 >
