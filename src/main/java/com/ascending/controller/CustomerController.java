@@ -31,7 +31,7 @@ public class CustomerController {
         return customerService.getCustomers();
     }
 
-    @Cacheable(value = "customers")
+    // @Cacheable(value = "customers")
     @RequestMapping(value = "/{cusName}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Customer getCustomersByName(@PathVariable String cusName){
         Customer customer = customerService.getCustomerByName(cusName);
@@ -44,7 +44,7 @@ public class CustomerController {
         return customers;
     }
 
-    @CachePut(value = "customers", key = "#customer.name", unless = "#customer.name == null")
+    // @CachePut(value = "customers", key = "#customer.name", unless = "#customer.name == null")
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public Customer createCustomer(@RequestBody Customer customer){
         logger.debug("Customer:" + customer.toString());
