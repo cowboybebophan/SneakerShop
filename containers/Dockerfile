@@ -3,7 +3,6 @@ FROM tomcat:9.0.16-jre8
 EXPOSE 8080
 
 ENV DB_URL = ""
-ENV DB_PORT = ""
 ENV DB_NAME = ""
 ENV DB_USER = ""
 ENV DB_PASSWORD = ""
