@@ -42,7 +42,7 @@ public class MessageServiceTest {
         logger.info(">>>>>> End testing...");
     }
 
-    @Test
+    //@Test
     public void createQueue() {
         messageService.createQueue(queueName);
         Assert.assertEquals(1, amazonSQS.listQueues().getQueueUrls().size());

@@ -13,7 +13,6 @@ import java.util.Set;
 @Table(name = "customer")
 public class Customer extends Model {
     public Customer() {
-
     }
 
     public Customer(int id){
