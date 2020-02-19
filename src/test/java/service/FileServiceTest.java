@@ -1,3 +1,4 @@
+/*
 package service;
 
 import com.amazonaws.services.s3.AmazonS3;
@@ -53,14 +54,14 @@ public class FileServiceTest {
         logger.info(">>>>>> End testing...");
     }
 
-    //@Test
+    @Test
     public void createBucket(){
         fileService.createBucket(bucketName);
         Assert.assertEquals(true, amazonS3.doesBucketExistV2(bucketName));
         amazonS3.deleteBucket(bucketName);
     }
 
-    //@Test
+    @Test
     public void uploadFile() throws IOException {
         fileService.createBucket(bucketName);
 
@@ -72,9 +73,12 @@ public class FileServiceTest {
         amazonS3.deleteBucket(bucketName);
     }
 
-    /*@Test
+    */
+/*@Test
     public void saveFile() throws IOException, FileNotFoundException {
         boolean isSuccess = fileService.saveFile(multipartFile, path);
         Assert.assertTrue(isSuccess);
-    }*/
+    }*//*
+
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package service;
 
 import com.amazonaws.services.sqs.AmazonSQS;
@@ -42,16 +43,19 @@ public class MessageServiceTest {
         logger.info(">>>>>> End testing...");
     }
 
-    //@Test
+    @Test
     public void createQueue() {
         messageService.createQueue(queueName);
         Assert.assertEquals(1, amazonSQS.listQueues().getQueueUrls().size());
     }
 
-    /*@Test
+    */
+/*@Test
     public void getMessages() {
 
-    }*/
+    }*//*
+
 
 
 }
+*/
