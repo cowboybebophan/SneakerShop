@@ -19,6 +19,7 @@ public class AuthServiceImpl implements AuthService{
     private Logger logger;
     @Autowired
     private UserService userService;
+    private static String HOME_URI = "/home";
     private static String AUTH_URI = "/auth";
 
     @Autowired
@@ -33,7 +34,7 @@ public class AuthServiceImpl implements AuthService{
         String uri = req.getRequestURI();
         String verb = req.getMethod();
         String msg = "No valid token found.";
-        if (uri.startsWith(AUTH_URI)) return HttpServletResponse.SC_ACCEPTED;
+        if (uri.startsWith(AUTH_URI) || uri.startsWith(HOME_URI)) return HttpServletResponse.SC_ACCEPTED;
 
         try {
             String token = req.getHeader("Authorization").replaceAll("^(.*?) ", "");

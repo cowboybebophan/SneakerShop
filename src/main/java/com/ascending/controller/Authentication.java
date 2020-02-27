@@ -31,3 +31,4 @@ public class Authentication {
         return authenticate(user);
     }
 }
+
