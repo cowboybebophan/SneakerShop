@@ -37,7 +37,7 @@ public class CustomerDaoImpl implements CustomerDao{
             Session session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.saveOrUpdate(customer);
-            result =customer;
+            result = customer;
             transaction.commit();
         }
         catch (Exception e){

@@ -11,9 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name = "product")
 public class Product extends Model{
-    public Product() {
-
-    }
+    public Product() {}
 
     public Product(int id) {
         this.id = id;
