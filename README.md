@@ -99,7 +99,7 @@ Redis commandline:
     -Ddatabase.password=${password}
     -Ddatabase.driver=org.postgresql.Driver
     -Ddatabase.dialect=org.hibernate.dialect.PostgreSQL9Dialect
-    -Ddatabase.url=jdbc:postgresql://${database_host}:${port}/${database_name}
+    -Ddatabase.url=jdbc:postgresql://${database_url}:${port}/${database_name}
 
 ## Database Migration
 >Use `Flyway` as a data migration tool.
