@@ -136,7 +136,7 @@ Make sure you have uploaded the latest version of your source code in a public G
     
 >Switch to the project folder, then use `Flyway` to migrate data.
 >
-    mvn clean compile flyway:migrate -Ddatabase.url=jdbc:postgresql://${database_host}:5432/${database_name} 
+    mvn clean compile flyway:migrate -Ddatabase.url=jdbc:postgresql://${database_url}:5432/${database_name} 
     -Ddatabase.user=${user_name} -Ddatabase.password=${password}
     
 Notice: we are working in a maven container so the database connection is no longer through localhost:5432.
@@ -146,7 +146,7 @@ The database_host should be the internal IP address for the `postgreSQL` server 
     
 >Run unit tests in the container.
 >
-    mvn test -Ddatabase.url=jdbc:postgresql://${database_host}:5432/${database_name} -Ddatabase.user=${user_name} 
+    mvn test -Ddatabase.url=jdbc:postgresql://${database_url}:5432/${database_name} -Ddatabase.user=${user_name} 
     -Ddatabase.password=${password} -Daws.accessKeyId=${access_key} -Daws.secretKey=${secret_key} 
     -Ddatabase.dialect=org.hibernate.dialect.PostgreSQL9Dialect -Ddatabase.driver=org.postgresql.Driver
     

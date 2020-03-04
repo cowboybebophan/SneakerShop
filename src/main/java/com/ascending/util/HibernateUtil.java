@@ -16,14 +16,6 @@ public class HibernateUtil {
     private static SessionFactory sessionFactory;
     private static Logger logger = LoggerFactory.getLogger(HibernateUtil.class);
 
-    /* Define JVM options
-    -Ddatabase.driver=org.postgresql.Driver
-    -Ddatabase.dialect=org.hibernate.dialect.PostgreSQL9Dialect
-    -Ddatabase.url=jdbc:postgresql://localhost:5432/sneaker_db
-    -Ddatabase.user=admin
-    -Ddatabase.password=1234
-    */
-
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {

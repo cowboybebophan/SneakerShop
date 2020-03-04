@@ -34,6 +34,7 @@ public class AuthServiceImpl implements AuthService{
         String uri = req.getRequestURI();
         String verb = req.getMethod();
         String msg = "No valid token found.";
+
         if (uri.startsWith(AUTH_URI) || uri.startsWith(HOME_URI)) return HttpServletResponse.SC_ACCEPTED;
 
         try {

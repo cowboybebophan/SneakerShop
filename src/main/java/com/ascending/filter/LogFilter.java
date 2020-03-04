@@ -36,3 +36,4 @@ public class LogFilter implements Filter {
         //logger.debug(">>>>>> Destroying filter......");
     }
 }
+

@@ -30,6 +30,7 @@ import static org.mockito.Mockito.*;
 @SpringBootTest(classes = AppInitializer.class)
 public class MessageServiceMockAWSTest {
     @Autowired
+
     @Spy
     private Logger logger;
     @Mock(answer = Answers.RETURNS_DEEP_STUBS)
